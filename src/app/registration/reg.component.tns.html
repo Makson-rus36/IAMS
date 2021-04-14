@@ -1,20 +1,17 @@
 <FlexboxLayout class="stackLayoutMainPage">
     <StackLayout class="form">
-        <StacklLayout  class="stackLayoutHeader">
-            <Label class="label-reg" [text]="'Регистрация'"></Label>
-        </StacklLayout>
+        <Label class="label-reg" [text]="'Регистрация'"></Label>
         <StackLayout  class="stackLayoutMain">
-            <TextField hint="Имя"></TextField>
-            <TextField hint="Фамилия"></TextField>
-            <TextField hint="Отчество"></TextField>
-            <TextField hint="Номер телефона" keyboardType="phone"></TextField>
-            <TextField hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+            <TextField [(ngModel)]="nameUser" hint="Имя"></TextField>
+            <TextField [(ngModel)]="lastNameUser" hint="Фамилия"></TextField>
+            <TextField [(ngModel)]="otchUser" hint="Отчество"></TextField>
+            <TextField [(ngModel)]="phoneNumberUser" hint="Номер телефона" keyboardType="phone"></TextField>
+            <TextField [(ngModel)]="emailUser" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
                        class="input input-border"></TextField>
-            <TextField hint="Password" secure="true"  class="input input-border"></TextField>
-
-            <Button class="btn-enter btn" ></Button>
-            <Button  ></Button>
+            <TextField [(ngModel)]="passwordUser" hint="Пароль" secure="true"  class="input input-border"></TextField>
+            <Button class="btn-enter btn" (tap)="createAcc($event)" [text]="'Регистрация!'"></Button>
         </StackLayout>
+        <Label class="btn btn-back" style="margin-top: 100px" [text]="'Вы уже зарегестрированы?'" (tap)="backAuth($event)"></Label>
     </StackLayout>
 </FlexboxLayout>
 

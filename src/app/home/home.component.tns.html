@@ -1,5 +1,22 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<ActionBar [title]="title"></ActionBar>
-<StackLayout  class="p-20">
-    <Label [text]="'Welcome to ' + title + '!'" class="h1 text-center" textWrap="true"></Label>
+<ScrollView>
+<StackLayout class="backStyle">
+    <Label class="labelHello" [text]="'Добро пожаловать!'"></Label>
+    <StackLayout class="infoUser">
+        <Label class="label-first" [text]="'Характеристики'"></Label>
+        <StackLayout class="stackInfoUser">
+            <Label class="label-weight-user" [text]="'Вес'"></Label>
+            <Label class="delimeter"></Label>
+            <Label [text]="'Пульс'"></Label>
+            <Label class="delimeter"></Label>
+            <Label [text]="'Давление'"></Label>
+            <Label class="delimeter"></Label>
+            <Label style="height: 100px;"></Label>
+        </StackLayout>
+    </StackLayout>
+    <Button [text]="'Пройти тест'"></Button>
+    <Button [text]="'Прием лекарств'"></Button>
+    <Button [text]="'Переписка с врачом'"></Button>
+    <Button [text]="'Прочитать рекомендации'"></Button>
+    <Button [text]="'Настройки'"></Button>
 </StackLayout>
+</ScrollView>

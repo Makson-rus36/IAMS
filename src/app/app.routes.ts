@@ -7,7 +7,7 @@ import {RegComponent} from '@src/app/registration/reg.component';
 export const routes: Routes = [
   {
       path: '',
-      redirectTo: '/enter',
+      redirectTo: '/home',
       pathMatch: 'full',
   },
   {

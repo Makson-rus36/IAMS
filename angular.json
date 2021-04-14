@@ -3,7 +3,8 @@
   "version": 1,
   "newProjectRoot": "projects",
   "cli": {
-    "defaultCollection": "@nativescript/schematics"
+    "defaultCollection": "@nativescript/schematics",
+    "analytics": "c5e56324-d785-44e2-8438-3c6ca3d0e6d0"
   },
   "projects": {
     "iams": {

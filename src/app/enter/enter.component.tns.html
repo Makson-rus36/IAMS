@@ -1,0 +1,17 @@
+<FlexboxLayout class="stackLayoutMainPage">
+    <StackLayout class="form" [class.dark]="!isLoggingIn">
+        <StacklLayout class="stackLayoutHeader">
+            <Image src="res://icon_enter"></Image>
+            <Label class="label-enter" textWrap="true" [text]="'Добро пожаловать'"></Label>
+            <Label class="label-enter"  textWrap="true" [text]="'Пожалуйста, введите свои данные ниже, чтобы войти в систему'"></Label>
+        </StacklLayout>
+        <StackLayout class="stackLayoutMain">
+        <TextField hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+                   class="input input-border"></TextField>
+        <TextField hint="Password" secure="true"  class="input input-border"></TextField>
+
+        <Button [text]="isLoggingIn ? 'Sign in' : 'Sign up'" class="btn-enter btn" (tap)="submit()"></Button>
+        <Button [text]="isLoggingIn ? 'Sign up' : 'Back to login'" (tap)="toggleDisplay($event)"></Button>
+        </StackLayout>
+    </StackLayout>
+</FlexboxLayout>

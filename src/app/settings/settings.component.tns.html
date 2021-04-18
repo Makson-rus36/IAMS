@@ -1,17 +1,47 @@
 <ScrollView>
     <StackLayout>
-        <Label class="labelSettings" [text]="'Настройки'" ></Label>
         <StackLayout class="mainStackLayout">
-            <StackLayout class="buttonStack" orientation="horizontal">
-                <Image src="res://icon_enter"></Image>
-                <Label class="labelButton" [text]="'Профиль'"></Label>
-                <Image style="width: 50px; height: 50px;" src="res://rightarrowsettings"></Image>
+            <StackLayout (tap)="goToHome($event)" orientation="horizontal">
+                <StackLayout class="buttonStackBack" orientation="horizontal">
+                    <Image src="res://leftarrow"></Image>
+                </StackLayout>
             </StackLayout>
-            <Button [text]="'Уведомления'"></Button>
-            <Button [text]="'Аккаунт'"></Button>
-            <Button [text]="'Помощь'"></Button>
-            <Button [text]="'О программе'"></Button>
-            <Button [text]="'Назад'" (tap)="goToHome($event)"></Button>
+            <Label style="text-align: left" class="labelSettings" [text]="'Настройки'" ></Label>
+            <StackLayout orientation="horizontal">
+                <StackLayout class="buttonStack" orientation="horizontal">
+                    <Image src="res://profile"></Image>
+                    <Label class="labelButton" [text]="'Профиль'"></Label>
+                </StackLayout>
+                <Image class="imageIcon" src="res://rightarrowsettings"></Image>
+            </StackLayout>
+            <StackLayout orientation="horizontal">
+                <StackLayout class="buttonStack" orientation="horizontal">
+                    <Image src="res://security"></Image>
+                    <Label class="labelButton" [text]="'Аккаунт'"></Label>
+                </StackLayout>
+                <Image class="imageIcon" src="res://rightarrowsettings"></Image>
+            </StackLayout>
+            <StackLayout orientation="horizontal">
+                <StackLayout class="buttonStack" orientation="horizontal">
+                    <Image src="res://notifications"></Image>
+                    <Label class="labelButton" [text]="'Уведомления'"></Label>
+                </StackLayout>
+                <Image class="imageIcon" src="res://rightarrowsettings"></Image>
+            </StackLayout>
+            <StackLayout orientation="horizontal">
+                <StackLayout class="buttonStack" orientation="horizontal">
+                    <Image src="res://help"></Image>
+                    <Label class="labelButton" [text]="'Помощь'"></Label>
+                </StackLayout>
+                <Image class="imageIcon" src="res://rightarrowsettings"></Image>
+            </StackLayout>
+            <StackLayout orientation="horizontal">
+                <StackLayout class="buttonStack" orientation="horizontal">
+                    <Image src="res://info"></Image>
+                    <Label class="labelButton" [text]="'О приложении'"></Label>
+                </StackLayout>
+                <Image class="imageIcon" src="res://rightarrowsettings"></Image>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </ScrollView>

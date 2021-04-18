@@ -1,0 +1,49 @@
+.mainStackLayout {
+    text-align: center;
+    font-size: 16px;
+    background: #1E1F26;
+    max-width: 90%;
+    width: 90%;
+}
+
+.buttonStackBack{
+    margin-top: 10px;
+    margin-left: 0;
+    min-width: 95%;
+    width: 95%;
+    flex: fit-content;
+    height: 100px;
+    max-height: 1800px;
+}
+
+Image{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 85px;
+    max-height: 85px;
+    width: 85px;
+    max-width: 85px;
+}
+
+.labelHeaderMenu{
+    color: white;
+    font-size: 36px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-weight: 200;
+}
+
+Button{
+    background-color: #D0E1F9;
+    padding: 10px;
+    border-radius: 10px;
+    color: #1E1F26;
+    margin-top: 40px;
+    max-width: 80%;
+    width: 80%;
+    font-size: 20px;
+   height: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+ScrollView{
+    background: #1E1F26;
+}

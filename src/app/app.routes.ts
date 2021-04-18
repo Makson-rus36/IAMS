@@ -4,6 +4,12 @@ import { HomeComponent } from '@src/app/home/home.component';
 import {EnterComponent} from '@src/app/enter/enter.component';
 import {RegComponent} from '@src/app/registration/reg.component';
 import {SettingsComponent} from '@src/app/settings/settings.component';
+import {RecomendationComponent} from '@src/app/recomendation/recomendation.component';
+import {AboutComponent} from '@src/app/settings/about/about.component';
+import {AccountComponent} from '@src/app/settings/account/account.component';
+import {HelpComponent} from '@src/app/settings/help/help.component';
+import {NotificationsComponent} from '@src/app/settings/notifications/notifications.component';
+import {ProfileComponent} from '@src/app/settings/profile/profile.component';
 //import {SettingsComponent} from '@src/app/settings/settings.component';
 
 export const routes: Routes = [
@@ -28,4 +34,23 @@ export const routes: Routes = [
         path: 'settings',
         component: SettingsComponent
     },
+    {
+        path: 'recommendation',
+        component: RecomendationComponent
+    },
+    {
+        path: 'about', component: AboutComponent
+    },
+    {
+        path: 'account', component: AccountComponent
+    },
+    {
+       path: 'help', component: HelpComponent
+    },
+    {
+        path: 'notifications', component: NotificationsComponent
+    },
+    {
+        path: 'profile', component: ProfileComponent
+    }
 ];

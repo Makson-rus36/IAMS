@@ -17,6 +17,22 @@ export class SettingsComponent implements OnInit{
         this.page.actionBarHidden = true;
     }
 
+    goToAbout($event){
+        this.router.navigate(['about'])
+    }
+    goToAccount($event){
+        this.router.navigate(['account'])
+    }
+    goToHelp($event){
+        this.router.navigate(['help'])
+    }
+    goToNotifications($event){
+        this.router.navigate(['notifications'])
+    }
+    goToProfile($event){
+        this.router.navigate(['profile'])
+    }
+
     goToHome($event){
         this.router.navigate(['home']);
     }

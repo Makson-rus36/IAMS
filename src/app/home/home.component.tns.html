@@ -16,7 +16,7 @@
     <Button [text]="'Пройти тест'"></Button>
     <Button [text]="'Прием лекарств'"></Button>
     <Button [text]="'Переписка с врачом'"></Button>
-    <Button [text]="'Прочитать рекомендации'"></Button>
+    <Button [text]="'Прочитать рекомендации'" (tap)="goToRecommendation($event)"></Button>
     <Button [text]="'Настройки'" (tap)="goToSettings($event)"></Button>
 </StackLayout>
 </ScrollView>

@@ -19,4 +19,8 @@ export class HomeComponent implements OnInit {
   goToSettings($event){
     this.router.navigate(['settings']);
   }
+
+  goToRecommendation($event){
+    this.router.navigate(['recommendation']);
+  }
 }

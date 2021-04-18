@@ -1,0 +1,48 @@
+.mainStackLayout {
+    text-align: center;
+    font-size: 16px;
+    background: #1E1F26;
+    max-width: 90%;
+    width: 90%;
+}
+
+.labelSettings{
+    margin-left: 100px;
+    color: white;
+    font-size: 24px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-weight: 200;
+
+}
+
+.buttonStack{
+    min-height: 75px;
+    height: 75px;
+    max-height: 75px;
+    margin-left: 100px;
+    width: 100%;
+}
+
+ScrollView{
+    background: #1E1F26;
+}
+
+.labelButton{
+    margin-left: 20px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
+
+/*Button{
+    text-align: center;
+    margin-bottom: 20px;
+    background: #D0E1F9;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    height: 75px;
+    color: #020202;
+    padding: 4% 16%;
+}*/

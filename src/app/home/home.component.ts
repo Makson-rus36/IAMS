@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AndroidApplication, Page} from '@nativescript/core';
 import Theme from '@nativescript/theme';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,13 @@ import Theme from '@nativescript/theme';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private page: Page) { }
+  constructor(private page: Page, private router:Router) { }
 
   ngOnInit() {
     this.page.actionBarHidden = true;
+  }
+
+  goToSettings($event){
+    this.router.navigate(['settings']);
   }
 }

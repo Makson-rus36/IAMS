@@ -1,4 +1,4 @@
-<ScrollView>
+<ScrollView class="backgroundStyle">
     <StackLayout>
         <StackLayout class="mainStackLayout">
             <StackLayout (tap)="goToHome($event)" orientation="horizontal">
@@ -6,9 +6,9 @@
                     <Image src="res://leftarrow"></Image>
                 </StackLayout>
             </StackLayout>
-            <Label style="text-align: left" class="labelHeaderMenu" [text]="'Рекомендации'" ></Label>
-            <Button [text]="'Информация о заболевании'"></Button>
-            <Button [text]="'Диагностика заболевания'"></Button>
+            <Label style="text-align: left" class="labelHeaderMenu labelLightStyle" [text]="'Рекомендации'" ></Label>
+            <Button [text]="'Информация о заболевании'" class="buttonStyle"></Button>
+            <Button [text]="'Диагностика заболевания'" class="buttonStyle"></Button>
         </StackLayout>
     </StackLayout>
 </ScrollView>

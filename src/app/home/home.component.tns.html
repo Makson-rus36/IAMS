@@ -1,22 +1,22 @@
 <ScrollView>
-<StackLayout class="backStyle">
-    <Label class="labelHello" [text]="'Добро пожаловать!'"></Label>
-    <StackLayout class="infoUser">
-        <Label class="label-first" [text]="'Характеристики'"></Label>
+<StackLayout class="backgroundStyle">
+    <Label class="labelHello labelLightStyle" [text]="'Добро пожаловать!'"></Label>
+    <StackLayout class="infoUser backgroundStyleLight">
+        <Label class="label-first labelDarkStyle" [text]="'Характеристики'"></Label>
         <StackLayout class="stackInfoUser">
-            <Label class="label-weight-user" [text]="'Вес'"></Label>
+            <Label class="label-weight-user labelDarkStyle" [text]="'Вес'"></Label>
+            <Label class="delimeter labelDarkStyle"></Label>
+            <Label [text]="'Пульс'" class="labelDarkStyle"></Label>
+            <Label class="delimeter labelDarkStyle"></Label>
+            <Label [text]="'Давление'" class="labelDarkStyle"></Label>
             <Label class="delimeter"></Label>
-            <Label [text]="'Пульс'"></Label>
-            <Label class="delimeter"></Label>
-            <Label [text]="'Давление'"></Label>
-            <Label class="delimeter"></Label>
-            <Label style="height: 100px;"></Label>
+            <Button [text]="'Обновить'" style="background-color: #ff8e12" class="buttonStyle"></Button>
         </StackLayout>
     </StackLayout>
-    <Button [text]="'Пройти тест'"></Button>
-    <Button [text]="'Прием лекарств'"></Button>
-    <Button [text]="'Переписка с врачом'"></Button>
-    <Button [text]="'Прочитать рекомендации'" (tap)="goToRecommendation($event)"></Button>
-    <Button [text]="'Настройки'" (tap)="goToSettings($event)"></Button>
+    <Button [text]="'Пройти тест'" class="buttonStyle"></Button>
+    <Button [text]="'Прием лекарств'" class="buttonStyle"></Button>
+    <Button [text]="'Переписка с врачом'" class="buttonStyle"></Button>
+    <Button [text]="'Прочитать рекомендации'" class="buttonStyle" (tap)="goToRecommendation($event)"></Button>
+    <Button [text]="'Настройки'" class="buttonStyle" (tap)="goToSettings($event)"></Button>
 </StackLayout>
 </ScrollView>

@@ -1,3 +1,40 @@
- 
+
 @import '~@nativescript/theme/css/core.css';
 @import '~@nativescript/theme/css/blue.css';
+@import '~@nativescript/theme/css/aqua.css';
+@import '~@nativescript/theme/css/blue.css';
+@import '~@nativescript/theme/css/brown.css';
+@import '~@nativescript/theme/css/forest.css';
+@import '~@nativescript/theme/css/grey.css';
+@import '~@nativescript/theme/css/lemon.css';
+@import '~@nativescript/theme/css/lime.css';
+@import '~@nativescript/theme/css/orange.css';
+@import '~@nativescript/theme/css/purple.css';
+@import '~@nativescript/theme/css/ruby.css';
+@import '~@nativescript/theme/css/sky.css';
+
+.backgroundStyle{
+    background-color: #202c63;
+}
+
+.backgroundStyleLight{
+    background-color: #f5f4f9;
+}
+
+.textColor{
+    color: #d0e1f9;
+}
+
+.buttonStyle{
+    background-color: #d12662;
+    color: #f5f4f9;
+}
+
+.labelLightStyle{
+    color: #fff;
+}
+
+.labelDarkStyle{
+    color: #42456f;
+}
+

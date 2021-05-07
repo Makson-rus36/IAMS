@@ -1,4 +1,4 @@
-<ScrollView>
+<ScrollView class="backgroundStyle">
     <StackLayout>
         <StackLayout class="mainStackLayout">
             <StackLayout (tap)="goToHome($event)" orientation="horizontal">
@@ -6,39 +6,39 @@
                     <Image src="res://leftarrow"></Image>
                 </StackLayout>
             </StackLayout>
-            <Label style="text-align: left" class="labelSettings" [text]="'Настройки'" ></Label>
+            <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Настройки'" ></Label>
             <StackLayout (tap)="goToProfile($event)" orientation="horizontal">
                 <StackLayout class="buttonStack" orientation="horizontal">
                     <Image src="res://profile"></Image>
-                    <Label class="labelButton" [text]="'Профиль'"></Label>
+                    <Label class="labelButton labelLightStyle" [text]="'Профиль'"></Label>
                 </StackLayout>
                 <Image class="imageIcon" src="res://rightarrowsettings"></Image>
             </StackLayout>
             <StackLayout (tap)="goToAccount($event)" orientation="horizontal">
                 <StackLayout class="buttonStack" orientation="horizontal">
                     <Image src="res://security"></Image>
-                    <Label class="labelButton" [text]="'Аккаунт'"></Label>
+                    <Label class="labelButton labelLightStyle" [text]="'Аккаунт'"></Label>
                 </StackLayout>
                 <Image class="imageIcon" src="res://rightarrowsettings"></Image>
             </StackLayout>
             <StackLayout (tap)="goToNotifications($event)" orientation="horizontal">
                 <StackLayout class="buttonStack" orientation="horizontal">
                     <Image src="res://notifications"></Image>
-                    <Label class="labelButton" [text]="'Уведомления'"></Label>
+                    <Label class="labelButton labelLightStyle" [text]="'Уведомления'"></Label>
                 </StackLayout>
                 <Image class="imageIcon" src="res://rightarrowsettings"></Image>
             </StackLayout>
             <StackLayout (tap)="goToHelp($event)" orientation="horizontal">
                 <StackLayout class="buttonStack" orientation="horizontal">
                     <Image src="res://help"></Image>
-                    <Label class="labelButton" [text]="'Помощь'"></Label>
+                    <Label class="labelButton labelLightStyle" [text]="'Помощь'"></Label>
                 </StackLayout>
                 <Image class="imageIcon" src="res://rightarrowsettings"></Image>
             </StackLayout>
             <StackLayout (tap)="goToAbout($event)" orientation="horizontal">
                 <StackLayout class="buttonStack" orientation="horizontal">
                     <Image src="res://info"></Image>
-                    <Label class="labelButton" [text]="'О приложении'"></Label>
+                    <Label class="labelButton labelLightStyle" [text]="'О приложении'"></Label>
                 </StackLayout>
                 <Image class="imageIcon" src="res://rightarrowsettings"></Image>
             </StackLayout>

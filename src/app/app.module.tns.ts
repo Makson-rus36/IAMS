@@ -13,6 +13,7 @@ import {SettingsComponent} from '@src/app/settings/settings.component';
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
 import { NativeScriptFormsModule, NativeScriptHttpClientModule } from '@nativescript/angular';
 import {RecomendationComponent} from '@src/app/recomendation/recomendation.component';
+import {ChatComponent} from '@src/app/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {RecomendationComponent} from '@src/app/recomendation/recomendation.compo
       RegComponent,
       SettingsComponent,
       RecomendationComponent,
+      ChatComponent
   ],
   imports: [
     BrowserAnimationsModule,

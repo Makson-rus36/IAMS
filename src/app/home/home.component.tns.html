@@ -15,7 +15,7 @@
     </StackLayout>
     <Button [text]="'Пройти тест'" class="buttonStyle"></Button>
     <Button [text]="'Прием лекарств'" class="buttonStyle"></Button>
-    <Button [text]="'Переписка с врачом'" class="buttonStyle"></Button>
+    <Button [text]="'Переписка с врачом'" (tap)="goToChat($event)" class="buttonStyle"></Button>
     <Button [text]="'Прочитать рекомендации'" class="buttonStyle" (tap)="goToRecommendation($event)"></Button>
     <Button [text]="'Настройки'" class="buttonStyle" (tap)="goToSettings($event)"></Button>
 </StackLayout>

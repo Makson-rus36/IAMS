@@ -1,0 +1,27 @@
+
+    <GridLayout rows="50,1*, 50" class="backgroundStyle">
+        <StackLayout row="0" class="backgroundStyleLight headerMessage">
+            <Label class="labelDarkStyle headerNameUser" [text]="'Hello'"></Label>
+        </StackLayout>
+        <ScrollView row="1">
+        <StackLayout>
+            <StackLayout style="margin-top: 20px; border-radius: 10px;" *ngFor="let message of messages">
+                <StackLayout  style="background-color: #d0e1f9">
+                    <Label  style="color: red" [text]="message.name"></Label>
+                    <Label  style="color: red" [text]="message.id"></Label>
+                    <Label [text]="message.message"></Label>
+                </StackLayout>
+                <!--<StackLayout *ngIf="message.id!='1'" style="background-color: #d12662;">
+                    <Label  style="color: red" [text]="message.name"></Label>
+                    <Label  style="color: red" [text]="message.id"></Label>
+                    <Label [text]="message.message"></Label>
+                </StackLayout>-->
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+            <StackLayout row="2" class="backgroundStyleLight" style="position: fixed; bottom: 2px;" orientation="horizontal">
+                <TextField style="width: 200px;"></TextField>
+                <Button [text]="'Send'"></Button>
+            </StackLayout>
+
+    </GridLayout>

@@ -14,6 +14,8 @@ import {SettingsComponent} from '@src/app/settings/settings.component';
 import { NativeScriptFormsModule, NativeScriptHttpClientModule } from '@nativescript/angular';
 import {RecomendationComponent} from '@src/app/recomendation/recomendation.component';
 import {ChatComponent} from '@src/app/chat/chat.component';
+import {DatePipe} from '@angular/common';
+import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +25,15 @@ import {ChatComponent} from '@src/app/chat/chat.component';
       RegComponent,
       SettingsComponent,
       RecomendationComponent,
-      ChatComponent
+      ChatComponent,
+      ScheduleComponent
   ],
   imports: [
     BrowserAnimationsModule,
     NativeScriptModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

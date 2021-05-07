@@ -1,0 +1,20 @@
+.buttonStackBack{
+    margin-left: 10px;
+    flex: fit-content;
+    height: 100px;
+}
+.labelSchedule{
+    font-size: 36px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-weight: 200;
+}
+
+.blockBackgroundPill{
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.blockPill{
+    font-size: 20px;
+    padding: 10px;
+}

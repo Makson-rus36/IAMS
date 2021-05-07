@@ -11,6 +11,7 @@ import {HelpComponent} from '@src/app/settings/help/help.component';
 import {NotificationsComponent} from '@src/app/settings/notifications/notifications.component';
 import {ProfileComponent} from '@src/app/settings/profile/profile.component';
 import {ChatComponent} from '@src/app/chat/chat.component';
+import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
 //import {SettingsComponent} from '@src/app/settings/settings.component';
 
 export const routes: Routes = [
@@ -56,5 +57,8 @@ export const routes: Routes = [
     },
     {
         path: 'chat', component: ChatComponent
+    },
+    {
+        path:'schedule', component: ScheduleComponent
     }
 ];

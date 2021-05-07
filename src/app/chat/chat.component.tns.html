@@ -1,27 +1,36 @@
 
-    <GridLayout rows="50,1*, 50" class="backgroundStyle">
-        <StackLayout row="0" class="backgroundStyleLight headerMessage">
-            <Label class="labelDarkStyle headerNameUser" [text]="'Hello'"></Label>
-        </StackLayout>
-        <ScrollView row="1">
-        <StackLayout>
-            <StackLayout style="margin-top: 20px; border-radius: 10px;" *ngFor="let message of messages">
-                <StackLayout  style="background-color: #d0e1f9">
-                    <Label  style="color: red" [text]="message.name"></Label>
-                    <Label  style="color: red" [text]="message.id"></Label>
-                    <Label [text]="message.message"></Label>
+    <GridLayout  rows="50,1*, 50" class="backgroundStyle">
+        <GridLayout columns="30,1*" row="0" class="backgroundStyleLight headerMessage">
+            <StackLayout col="0" (tap)="goToHome($event)" orientation="horizontal">
+                <StackLayout class="buttonStackBack" orientation="horizontal">
+                    <Image src="res://leftarrow"></Image>
                 </StackLayout>
-                <!--<StackLayout *ngIf="message.id!='1'" style="background-color: #d12662;">
-                    <Label  style="color: red" [text]="message.name"></Label>
-                    <Label  style="color: red" [text]="message.id"></Label>
-                    <Label [text]="message.message"></Label>
-                </StackLayout>-->
             </StackLayout>
+            <Label col="1" class="labelDarkStyle headerNameUser" [text]="userData.name"></Label>
+        </GridLayout>
+        <ScrollView row="1">
+        <StackLayout style="width: 100%">
+            <FlexboxLayout flexDirection="column-reverse" justifyContent="space-around" alignItems="stretch" style="margin-top: 20px; border-radius: 10px;" *ngFor="let message of messages">
+                <StackLayout *ngIf="message.id!=id" alignSelf="flex-start"  class="messageSender">
+                    <StackLayout orientation="horizontal">
+                        <Label style="font-size: 22px" [text]="message.name+' '"></Label>
+                        <Label  [text]="message.time" class="timeBlock"></Label>
+                    </StackLayout>
+                    <TextView style="max-width: 500px; min-height: 50px; font-size: 18px; color: white; width: 500px;" editable="false" [text]="message.message"></TextView>
+                </StackLayout>
+                <StackLayout *ngIf="message.id==id" alignSelf="flex-end" class="messageYou">
+                    <StackLayout orientation="horizontal">
+                        <Label style="font-size: 22px" [text]="'Вы '"></Label>
+                        <Label  [text]="message.time" class="timeBlock"></Label>
+                    </StackLayout>
+                    <TextView style="max-width: 500px; min-height: 100px; font-size: 18px; color: white; width: 500px;" editable="false" [text]="message.message"></TextView>
+                </StackLayout>
+            </FlexboxLayout>
         </StackLayout>
         </ScrollView>
-            <StackLayout row="2" class="backgroundStyleLight" style="position: fixed; bottom: 2px;" orientation="horizontal">
-                <TextField style="width: 200px;"></TextField>
-                <Button [text]="'Send'"></Button>
-            </StackLayout>
-
+            <GridLayout row="2" columns="1*,120" class="backgroundStyleLight" style="position: fixed; bottom: 2px;">
+                <TextView (textChange)="onTextChange($event)" hint="Сообщение" col="0" class="messageEnterField input input-border"></TextView>
+                <Button class="buttonStyle" (tap)="addMessage($event)" col="1" [text]="'Отправить'"></Button>
+            </GridLayout>
     </GridLayout>
+

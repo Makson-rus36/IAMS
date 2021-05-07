@@ -27,5 +27,8 @@ export class HomeComponent implements OnInit {
   goToChat($event){
     this.router.navigate(['chat']);
   }
+  goToSchedule($event){
+    this.router.navigate(['schedule']);
+  }
 
 }

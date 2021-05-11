@@ -12,12 +12,13 @@ import {NotificationsComponent} from '@src/app/settings/notifications/notificati
 import {ProfileComponent} from '@src/app/settings/profile/profile.component';
 import {ChatComponent} from '@src/app/chat/chat.component';
 import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
+import {Auth0Component} from '@src/app/auth0/auth0.component';
 //import {SettingsComponent} from '@src/app/settings/settings.component';
 
 export const routes: Routes = [
   {
       path: '',
-      redirectTo: '/home',
+      redirectTo: '/enter',
       pathMatch: 'full',
   },
   {
@@ -26,7 +27,7 @@ export const routes: Routes = [
   },
     {
         path: 'enter',
-        component: EnterComponent
+        component: Auth0Component
     },
     {
         path: 'signup',

@@ -8,6 +8,7 @@ import {EnterComponent} from '@src/app/enter/enter.component';
 import {RegComponent} from '@src/app/registration/reg.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SettingsComponent} from '@src/app/settings/settings.component';
+import { JwtModule } from "@auth0/angular-jwt";
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
@@ -16,6 +17,13 @@ import {RecomendationComponent} from '@src/app/recomendation/recomendation.compo
 import {ChatComponent} from '@src/app/chat/chat.component';
 import {DatePipe} from '@angular/common';
 import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
+import {AuthModule} from '@auth0/auth0-angular';
+import {Auth0Component} from '@src/app/auth0/auth0.component';
+import {HttpClientModule} from '@angular/common/http';
+
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 @NgModule({
   declarations: [
@@ -26,12 +34,25 @@ import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
       SettingsComponent,
       RecomendationComponent,
       ChatComponent,
-      ScheduleComponent
+      ScheduleComponent,
+    Auth0Component
   ],
   imports: [
+      HttpClientModule,
     BrowserAnimationsModule,
     NativeScriptModule,
     AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["example.com"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    }),
+    AuthModule.forRoot({
+      domain: 'dev-de7070c7.eu.auth0.com',
+      clientId: 'rjN5zVLCKwZvaWL9aZYifEWwgLmgrN7Y'
+    }),
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

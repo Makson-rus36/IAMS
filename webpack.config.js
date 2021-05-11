@@ -28,10 +28,22 @@ const {
 const hashSalt = Date.now().toString();
 
 module.exports = env => {
+  env = env || {};
+  if (env.android) {
+    env.appComponents = env.appComponents || [];
+    env.appComponents.push("nativescript-auth0/android/provider/redirectActivity");
+  }
+  const appComponents = env.appComponents || [];
+  appComponents.push(...[
+    "@nativescript/core/ui/frame",
+    "@nativescript/core/ui/frame/activity"
+  ]);
   // Add your custom Activities, Services and other Android app components here.
-  const appComponents = [
-    "@nativescript/core/ui/frame", "@nativescript/core/ui/frame/activity"
-  ];
+
+
+  //const appComponents = [
+  //  "@nativescript/core/ui/frame", "@nativescript/core/ui/frame/activity"
+  //];
 
   const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
   if (!platform) {
@@ -85,7 +97,7 @@ module.exports = env => {
   const tsConfigTnsName = 'tsconfig.tns.json';
   const tsConfigTnsPath = resolve(projectRoot, tsConfigTnsName);
   if (fs.existsSync(tsConfigTnsPath)) {
-    // support shared angular app configurations 
+    // support shared angular app configurations
     tsConfigName = tsConfigTnsName;
     tsConfigPath = tsConfigTnsPath;
   }
@@ -390,7 +402,7 @@ module.exports = env => {
         process: 'global.process'
       }),
       // Remove all files from the out dir.
-      new CleanWebpackPlugin({ 
+      new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: itemsToClean,
         verbose: !!verbose
       }),

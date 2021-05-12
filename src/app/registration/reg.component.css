@@ -1,20 +1,19 @@
+@import "~src/app.css";
 .stackLayoutMainPage {
     justify-content: center;
     align-items: center;
-    position: absolute;
-    background-size: cover;
-    background-color: #1E1F26;
+    flex-direction: column;
+}
+.form {
+    flex-grow: 2;
+    vertical-align: middle;
 }
 .stackLayoutMain {
-    width: 80%;
     padding: 10 16;
-    background-color: #D0E1F9;
     border-radius: 10px;
 }
 .stackLayoutHeader{
     font-size: 16px;
-    max-width:80%;
-    width: 80%;
     padding: 10 16;
 }
 
@@ -22,7 +21,6 @@
     margin-bottom: 100px;
     width: 80%;
     font-size: 20px;
-    color: #D0E1F9;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     word-break: break-word;
@@ -34,35 +32,19 @@ Image {
 }
 TextField {
     margin-bottom: 10;
-    color: #4D648D;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
 }
 
 .btn-enter{
-    background: #1E1F26;
     border-radius: 10px;
-    color: #D0E1F9;
 }
 
 .btn-back{
     background-color: transparent;
-    text-decoration: underline;
     font-size: 16px;
     color: #D0E1F9;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
 }
 
-
-
-TextField {
-    placeholder-color: #4D648D;
-    color: black;
-}
-.dark {
-    background-color: #301217;
-}
-.dark TextField {
-    color:  #C4AFB4;
-}

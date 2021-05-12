@@ -16,7 +16,7 @@ import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
 export const routes: Routes = [
   {
       path: '',
-      redirectTo: '/enter',
+      redirectTo: '/signup',
       pathMatch: 'full',
   },
   {

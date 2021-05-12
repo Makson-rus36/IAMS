@@ -1,27 +1,25 @@
+@import "~src/app.css";
 .stackLayoutMainPage {
     justify-content: center;
     align-items: center;
-    position: absolute;
-    background-size: cover;
-    background-color: #1E1F26;
+    flex-direction: column;
+}
+.form {
+    flex-grow: 2;
+    vertical-align: middle;
 }
 .stackLayoutMain {
-    width: 80%;
     padding: 10 16;
-    background-color: #D0E1F9;
     border-radius: 10px;
 }
 .stackLayoutHeader{
     font-size: 16px;
-    max-width:80%;
-    width: 80%;
     padding: 10 16;
 }
 
 .label-enter{
     margin: 10px;
     width: 80%;
-    color: #D0E1F9;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     word-break: break-word;
@@ -38,10 +36,11 @@ Image {
     font-size: 16px;
 }
 
+
 .btn-enter{
-    background: #1E1F26;
+    font-size: 18px;
+    font-weight: 800;
     border-radius: 10px;
-    color: #D0E1F9;
 }
 
 
@@ -55,4 +54,9 @@ TextField {
 }
 .dark TextField {
     color:  #C4AFB4;
+}
+
+.labelBold{
+    font-size: 15px;
+    font-weight: 600;
 }

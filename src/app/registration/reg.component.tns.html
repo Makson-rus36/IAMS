@@ -1,17 +1,23 @@
-<FlexboxLayout class="stackLayoutMainPage">
+<FlexboxLayout class="stackLayoutMainPage backgroundStyle">
     <StackLayout class="form">
-        <Label class="label-reg" [text]="'Регистрация'"></Label>
+        <Label class="label-reg labelLightStyle" [text]="'Регистрация'"></Label>
         <StackLayout  class="stackLayoutMain">
-            <TextField [(ngModel)]="nameUser" hint="Имя"></TextField>
-            <TextField [(ngModel)]="lastNameUser" hint="Фамилия"></TextField>
-            <TextField [(ngModel)]="otchUser" hint="Отчество"></TextField>
-            <TextField [(ngModel)]="phoneNumberUser" hint="Номер телефона" keyboardType="phone"></TextField>
-            <TextField [(ngModel)]="emailUser" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
-                       class="input input-border"></TextField>
-            <TextField [(ngModel)]="passwordUser" hint="Пароль" secure="true"  class="input input-border"></TextField>
-            <Button class="btn-enter btn" (tap)="createAcc($event)" [text]="'Регистрация!'"></Button>
+            <TextField (textChange)="onTextChangeNameUser($event)" class="textFieldLight" hint="Имя"></TextField>
+            <TextField (textChange)="onTextChangeLastNameUser($event)" class="textFieldLight" hint="Фамилия"></TextField>
+            <TextField (textChange)="onTextChangeOtchUser($event)" class="textFieldLight" hint="Отчество"></TextField>
+            <TextField (textChange)="onTextChangePhoneUser($event)" class="textFieldLight" hint="Номер телефона" keyboardType="phone"></TextField>
+            <TextField (textChange)="onTextChangeEmailUser($event)" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+                       class="input input-border textFieldLight"></TextField>
+            <TextField (textChange)="onTextChangePasswordUser($event)"  hint="Пароль" secure="true"  class="input input-border textFieldLight"></TextField>
+            <TextField (textChange)="onTextChangeConfirmPasswordUser($event)"  hint="Повторите пароль" secure="true"  class="input input-border textFieldLight"></TextField>
+            <Button class="btn-enter btn buttonStyle" (tap)="createAcc($event)" [text]="'Регистрация!'"></Button>
         </StackLayout>
-        <Label class="btn btn-back" style="margin-top: 100px" [text]="'Вы уже зарегестрированы?'" (tap)="backAuth($event)"></Label>
     </StackLayout>
+    <Label class="btn btn-back" style="margin-top: 100px" (tap)="backAuth($event)">
+        <FormattedString>
+            <Span [text]="'Вы уже зарегестрированы? '"></Span>
+            <Span style="color: #d12662" [text]="'Войти.'"></Span>
+        </FormattedString>
+    </Label>
 </FlexboxLayout>
 

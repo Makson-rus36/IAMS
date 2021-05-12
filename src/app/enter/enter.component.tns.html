@@ -1,17 +1,23 @@
-<FlexboxLayout class="stackLayoutMainPage">
+<FlexboxLayout class="stackLayoutMainPage backgroundStyle">
     <StackLayout class="form" [class.dark]="!isLoggingIn">
         <StacklLayout class="stackLayoutHeader">
-            <Image src="res://icon_enter"></Image>
-            <Label class="label-enter" textWrap="true" [text]="'Добро пожаловать'"></Label>
-            <Label class="label-enter"  textWrap="true" [text]="'Пожалуйста, введите свои данные ниже, чтобы войти в систему'"></Label>
+            <Image src="res://logoenter"></Image>
+            <Label class="label-enter labelLightStyle" textWrap="true" [text]="'Добро пожаловать'"></Label>
+            <Label class="label-enter labelLightStyle"  textWrap="true" [text]="'Пожалуйста, введите свои данные ниже, чтобы войти в систему'"></Label>
         </StacklLayout>
         <StackLayout class="stackLayoutMain">
-        <TextField hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none"
-                   class="input input-border"></TextField>
-        <TextField hint="Password" secure="true"  class="input input-border"></TextField>
+        <TextField hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+                   class="input input-border textFieldLight"></TextField>
+        <TextField style="placeholder-color: #d5d5d5; color: white" hint="Пароль" secure="true"  class="input input-border textFieldLight"></TextField>
 
-        <Button [text]="isLoggingIn ? 'Sign in' : 'Sign up'" class="btn-enter btn" (tap)="submit()"></Button>
-        <Button [text]="isLoggingIn ? 'Sign up' : 'Back to login'" (tap)="toggleDisplay($event)"></Button>
+        <Button [text]="'Вход'" class="btn-enter btn buttonStyle" (tap)="submit()"></Button>
+
         </StackLayout>
     </StackLayout>
+    <Label class="labelLightStyle labelBold" (tap)="toggleDisplay($event)">
+        <FormattedString>
+            <Span [text]="'Нет учетной записи? '"></Span>
+            <Span style="color: #d12662" [text]="'Регистрация.'"></Span>
+        </FormattedString>
+    </Label>
 </FlexboxLayout>

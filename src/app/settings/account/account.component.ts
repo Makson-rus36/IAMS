@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Page} from '@nativescript/core';
 import {Router} from '@angular/router';
+import {AuthModel} from '@src/app/models/auth.model';
 
 @Component({
     selector: 'app-acc',
@@ -14,5 +15,13 @@ export class AccountComponent implements OnInit{
 
     ngOnInit() {
         this.page.actionBarHidden = true;
+    }
+
+    onExit($event){
+        const appSettings = require("tns-core-modules/application-settings");
+        appSettings.setString("token", "");
+        appSettings.setString("id_acc", "");
+        appSettings.setString("id_user", "");
+        this.router.navigate(['home'])
     }
 }

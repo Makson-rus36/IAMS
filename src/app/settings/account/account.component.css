@@ -1,0 +1,61 @@
+@import "~src/app.css";
+
+.mainStackLayout {
+    text-align: center;
+    font-size: 16px;
+    max-width: 90%;
+    width: 90%;
+}
+
+Image{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 85px;
+    max-height: 85px;
+    width: 85px;
+    max-width: 85px;
+}
+
+.imageIcon{
+    align-content: flex-end;
+}
+
+.labelSettings{
+    font-size: 36px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-weight: 200;
+}
+
+.buttonStack{
+    margin-left: 0;
+    min-width: 95%;
+    width: 95%;
+    flex: fit-content;
+    height: 180px;
+    max-height: 180px;
+}
+
+.buttonStackBack{
+    margin-top: 10px;
+    margin-left: 0;
+    min-width: 95%;
+    width: 95%;
+    flex: fit-content;
+    height: 100px;
+    max-height: 1800px;
+}
+
+ScrollView {
+}
+
+.labelButton{
+    padding: 0px;
+    height: 85px;
+    max-height: 85px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 20px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-size: 25pt;
+    font-weight: 400;
+}

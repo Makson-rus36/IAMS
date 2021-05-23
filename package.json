@@ -32,6 +32,8 @@
     "core-js": "^3.8.0",
     "nativescript": "~8.0.1",
     "nativescript-auth0": "^4.0.0",
+    "@nativescript/datetimepicker": "~2.0.0",
+    "nativescript-drop-down": "^6.0.0",
     "react-native-auth0": "^2.8.3",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.6.0",

@@ -1,6 +1,9 @@
 export class ModelUser {
     id:string;
-    name:string;
+    firstname:string;
+    lastname:string;
+    otchestvo:string;
+    datebirth:string;
+    statusUser:string;
     status:string;
-    role:string;
 }

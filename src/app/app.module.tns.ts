@@ -17,10 +17,9 @@ import {ChatComponent} from '@src/app/chat/chat.component';
 import {DatePipe} from '@angular/common';
 import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
 import {HttpClientModule} from '@angular/common/http';
+import {DropDownModule} from 'nativescript-drop-down/angular';
+import {NativeScriptDateTimePickerModule} from '@nativescript/datetimepicker/angular';
 
-export function tokenGetter() {
-  return localStorage.getItem("access_token");
-}
 
 @NgModule({
   declarations: [
@@ -34,6 +33,8 @@ export function tokenGetter() {
       ScheduleComponent
   ],
   imports: [
+    NativeScriptDateTimePickerModule,
+    DropDownModule,
       HttpClientModule,
     BrowserAnimationsModule,
     NativeScriptModule,

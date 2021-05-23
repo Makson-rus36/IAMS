@@ -6,9 +6,9 @@
             <Label class="label-enter labelLightStyle"  textWrap="true" [text]="'Пожалуйста, введите свои данные ниже, чтобы войти в систему'"></Label>
         </StacklLayout>
         <StackLayout class="stackLayoutMain">
-        <TextField hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+        <TextField (textChange)="setLogin($event)" style="placeholder-color: #d5d5d5; color: white" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
                    class="input input-border textFieldLight"></TextField>
-        <TextField style="placeholder-color: #d5d5d5; color: white" hint="Пароль" secure="true"  class="input input-border textFieldLight"></TextField>
+        <TextField (textChange)="setPsw($event)" style="placeholder-color: #d5d5d5; color: white" hint="Пароль" secure="true" class="input input-border textFieldLight"></TextField>
 
         <Button [text]="'Вход'" class="btn-enter btn buttonStyle" (tap)="submit()"></Button>
 

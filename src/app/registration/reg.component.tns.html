@@ -1,10 +1,15 @@
-<FlexboxLayout class="stackLayoutMainPage backgroundStyle">
+<FlexboxLayout xmlns:dd="nativescript-drop-down" class="stackLayoutMainPage backgroundStyle">
     <StackLayout class="form">
         <Label class="label-reg labelLightStyle" [text]="'Регистрация'"></Label>
         <StackLayout  class="stackLayoutMain">
             <TextField (textChange)="onTextChangeNameUser($event)" class="textFieldLight" hint="Имя"></TextField>
             <TextField (textChange)="onTextChangeLastNameUser($event)" class="textFieldLight" hint="Фамилия"></TextField>
             <TextField (textChange)="onTextChangeOtchUser($event)" class="textFieldLight" hint="Отчество"></TextField>
+            <StackLayout class="stackLayoutMain" orientation="horizontal">
+                <Label class="labelLightStyle pickerlabel" [text]="'Пол: '"></Label>
+            <DropDown [items]="objGenderName"   class="picker" selectedIndex="0" (selectedIndexChange)="onSelectedGenderChanged($event)"></DropDown>
+            </StackLayout>
+            <DatePickerField style=" color: white; font-size: 16px;height: 100px; placeholder-color: #d5d5d5;" (dateChange)="onDateChange($event)" [maxDate]="minDate" dateFormat="'Дата рождения: 'dd/MM/yyyy" hint="Выберите дату рождения"></DatePickerField>
             <TextField (textChange)="onTextChangePhoneUser($event)" class="textFieldLight" hint="Номер телефона" keyboardType="phone"></TextField>
             <TextField (textChange)="onTextChangeEmailUser($event)" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
                        class="input input-border textFieldLight"></TextField>

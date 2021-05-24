@@ -1,8 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Trace} from '@nativescript/core';
-import error = Trace.messageType.error;
-import {AuthModel} from '@src/app/models/auth.model';
 
 @Injectable()
 export class AuthService {
@@ -10,8 +7,17 @@ export class AuthService {
     constructor(private httpService: HttpClient) {
     }
 
-    updToken(){
+    updPassword(passwordAcc){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
 
+            "Content-Type": "application/json",
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        let objRegBody={
+            "passwordAcc": passwordAcc
+        }
+        return this.httpService.put("https://chf-back.herokuapp.com/api/accounts-users/"+appSettings.getString("id_acc"), objRegBody, {headers: header})
     }
 
     createAuth(emailAcc, loginAcc, passwordAcc, phoneNumber, datebirth, firstname, gender, lastname, otchestvo){

@@ -57,7 +57,7 @@ export class RegComponent implements OnInit {
         };
         let optionsAlert4 = {
             title: "Ошибка регистрации.",
-            message: "При регистрации произошла ошибка. Данные электронный адрес (email) уже зарегистрирован.",
+            message: "При регистрации произошла ошибка. Данный электронный адрес (email) уже зарегистрирован.",
             okButtonText: "OK"
         };
 

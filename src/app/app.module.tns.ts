@@ -19,6 +19,7 @@ import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DropDownModule} from 'nativescript-drop-down/angular';
 import {NativeScriptDateTimePickerModule} from '@nativescript/datetimepicker/angular';
+import {AccountComponent} from '@src/app/settings/account/account.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {NativeScriptDateTimePickerModule} from '@nativescript/datetimepicker/ang
       SettingsComponent,
       RecomendationComponent,
       ChatComponent,
-      ScheduleComponent
+      ScheduleComponent,
+      AccountComponent
   ],
   imports: [
     NativeScriptDateTimePickerModule,

@@ -1,7 +1,39 @@
 <ScrollView class="backgroundStyle">
     <StackLayout>
         <StackLayout class="mainStackLayout">
-           <Button (tap)="onExit($event)" [text]="'Выход'"></Button>
+            <StackLayout (tap)="goToSettings($event)" orientation="horizontal">
+                <StackLayout class="buttonStackBack" orientation="horizontal">
+                    <Image src="res://leftarrow"></Image>
+                </StackLayout>
+            </StackLayout>
+            <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Аккаунт'"></Label>
+            <StackLayout class="loginStack">
+                <Label class="labelLightStyle labelAcc" [text]="'Логин (изменять нельзя):'"></Label>
+                <TextField class="textFieldLight textFieldAcc" editable="false" hint="Логин" [text]="userLogin"
+                           (textChange)="editLoginChng($event)"></TextField>
+            </StackLayout>
+            <StackLayout class="loginStack">
+                <Label *ngIf="!isEdit" class="labelLightStyle labelAcc" [text]="'Пароль:'"></Label>
+                <TextField *ngIf="!isEdit" class="textFieldLight textFieldAcc" editable="false" hint="Пароль"
+                           [text]="'***************'"></TextField>
+
+                <Label *ngIf="isEdit" class="labelLightStyle labelAcc" [text]="'Новый пароль:'"></Label>
+                <TextField *ngIf="isEdit" class="textFieldLight textFieldAcc" editable="true" hint="Заполните это поле"
+                           (textChange)="editNewPswChng($event)"></TextField>
+
+                <Label *ngIf="isEdit" class="labelLightStyle labelAcc" [text]="'Повторите новый пароль:'"></Label>
+                <TextField *ngIf="isEdit" class="textFieldLight textFieldAcc" editable="true" hint="Заполните это поле"
+                           (textChange)="editConfPswChng($event)"></TextField>
+
+                <Label *ngIf="isEdit" class="labelLightStyle labelAcc" [text]="'Старый пароль:'"></Label>
+                <TextField *ngIf="isEdit" class="textFieldLight textFieldAcc" editable="{{isEdit}}"
+                           hint="Заполните это поле" (textChange)="editOldPswChng($event)"></TextField>
+            </StackLayout>
+            <Button class="buttonStyle" style="background-color: #ff8e12" *ngIf="isEdit" (tap)="onSave($event)"
+                    [text]="'Сохранить'"></Button>
+            <Button class="buttonStyle" *ngIf="isEdit" (tap)="onCancel($event)" [text]="'Отмена'"></Button>
+            <Button class="buttonStyle" *ngIf="!isEdit" (tap)="onEdit($event)" [text]="'Редактировать'"></Button>
+            <Button class="buttonStyle" (tap)="onExit($event)" [text]="'Выход'"></Button>
         </StackLayout>
     </StackLayout>
 </ScrollView>

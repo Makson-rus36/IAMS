@@ -56,6 +56,8 @@ export class EnterComponent implements OnInit {
                     this.authModelResp = <AuthModel>x.body;
                     appSettings.setString("id_acc", String(this.authModelResp.accId));
                     appSettings.setString("id_user", String(this.authModelResp.userId));
+                    appSettings.setString("psw_user", String(this.password));
+
                     this.router.navigate(['home'])
                 },
                 (error1: ErrorModel) => {

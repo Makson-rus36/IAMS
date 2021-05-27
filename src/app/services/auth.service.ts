@@ -15,6 +15,7 @@ export class AuthService {
             'Authorization':"Bearer "+appSettings.getString("token")
         }
         let objRegBody={
+            "userId":appSettings.getString("id_acc"),
             "passwordAcc": passwordAcc
         }
         return this.httpService.put("https://chf-back.herokuapp.com/api/accounts-users/"+appSettings.getString("id_acc"), objRegBody, {headers: header})

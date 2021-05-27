@@ -1,22 +1,22 @@
 <ScrollView>
 <StackLayout class="backgroundStyle">
     <Label class="labelHello labelLightStyle" [text]="'Добро пожаловать!'"></Label>
-    <StackLayout class="infoUser backgroundStyleLight">
+    <StackLayout *ngIf="typeAccess=='PATIENT'" class="infoUser backgroundStyleLight">
         <Label class="label-first labelDarkStyle" [text]="'Характеристики'"></Label>
         <StackLayout class="stackInfoUser">
-            <Label class="label-weight-user labelDarkStyle" [text]="'Вес'"></Label>
+            <Label class="label-weight-user labelDarkStyle" [text]="'Вес: '+historyChange[0].descriptionChange"></Label>
             <Label class="delimeter labelDarkStyle"></Label>
-            <Label [text]="'Пульс'" class="labelDarkStyle"></Label>
+            <Label [text]="'Пульс: '+historyChange[2].descriptionChange" class="labelDarkStyle"></Label>
             <Label class="delimeter labelDarkStyle"></Label>
-            <Label [text]="'Давление'" class="labelDarkStyle"></Label>
+            <Label [text]="'Давление: '+historyChange[1].descriptionChange" class="labelDarkStyle"></Label>
             <Label class="delimeter"></Label>
-            <Button [text]="'Обновить'" style="background-color: #ff8e12" class="buttonStyle"></Button>
+            <Button [text]="'Обновить'" style="background-color: #ff8e12" (tap)="goUpdate($event)" class="buttonStyle"></Button>
         </StackLayout>
     </StackLayout>
-    <Button [text]="'Пройти тест'" class="buttonStyle"></Button>
-    <Button [text]="'Прием лекарств'" (tap)="goToSchedule($event)" class="buttonStyle"></Button>
-    <Button [text]="'Переписка с врачом'" (tap)="goToChat($event)" class="buttonStyle"></Button>
-    <Button [text]="'Прочитать рекомендации'" class="buttonStyle" (tap)="goToRecommendation($event)"></Button>
+    <Button *ngIf="typeAccess=='PATIENT'" [text]="'Пройти тест'" class="buttonStyle"></Button>
+    <Button *ngIf="typeAccess=='PATIENT'" [text]="'Прием лекарств'" (tap)="goToSchedule($event)" class="buttonStyle"></Button>
+    <Button *ngIf="typeAccess=='PATIENT'" [text]="'Переписка с врачом'" (tap)="goToChat($event)" class="buttonStyle"></Button>
+    <Button *ngIf="typeAccess=='PATIENT'" [text]="'Прочитать рекомендации'" class="buttonStyle" (tap)="goToRecommendation($event)"></Button>
     <Button [text]="'Настройки'" class="buttonStyle" (tap)="goToSettings($event)"></Button>
 </StackLayout>
 </ScrollView>

@@ -3,7 +3,7 @@ export class AccModel {
     loginAcc:string;
     phoneNumber:string;
     imageProfile:string;
-    accessTypeId:string;
+    accessType:string;
     usersDataId:number;
 
 }

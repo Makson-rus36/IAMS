@@ -12,11 +12,13 @@ import {NotificationsComponent} from '@src/app/settings/notifications/notificati
 import {ProfileComponent} from '@src/app/settings/profile/profile.component';
 import {ChatComponent} from '@src/app/chat/chat.component';
 import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
+import {UpdateComponent} from '@src/app/update/update.component';
+import {Enter_sysComponent} from '@src/app/enter_sys/enter_sys.component';
 
 export const routes: Routes = [
   {
       path: '',
-      redirectTo: '/home',
+      redirectTo: '/check_enter',
       pathMatch: 'full',
   },
   {
@@ -59,5 +61,11 @@ export const routes: Routes = [
     },
     {
         path:'schedule', component: ScheduleComponent
+    },
+    {
+        path:'upd_state', component: UpdateComponent
+    },
+    {
+        path:'check_enter', component: Enter_sysComponent
     }
 ];

@@ -20,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {DropDownModule} from 'nativescript-drop-down/angular';
 import {NativeScriptDateTimePickerModule} from '@nativescript/datetimepicker/angular';
 import {AccountComponent} from '@src/app/settings/account/account.component';
+import {ProfileComponent} from '@src/app/settings/profile/profile.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {AccountComponent} from '@src/app/settings/account/account.component';
       RecomendationComponent,
       ChatComponent,
       ScheduleComponent,
-      AccountComponent
+      AccountComponent,
+      ProfileComponent
   ],
   imports: [
     NativeScriptDateTimePickerModule,

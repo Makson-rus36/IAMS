@@ -1,0 +1,21 @@
+<FlexboxLayout class="backgroundStyle stackLayoutMainPage">
+        <StackLayout class="mainStackLayout form">
+            <StackLayout (tap)="goToSettings($event)" orientation="horizontal">
+                <StackLayout class="buttonStackBack" orientation="horizontal">
+                    <Image src="res://leftarrow"></Image>
+                </StackLayout>
+            </StackLayout>
+            <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Профиль'"></Label>
+            <!--<TextView editable="false" style="text-align: center" class="labelLightStyle labelAcc">
+                <FormattedString>
+                    <Span style="color: #d12662" [text]="'Внимание! '"></Span>
+                    <Span [text]="'Изменять личные данные может только медицинская организация.'"></Span>
+                </FormattedString>
+            </TextView>-->
+            <Label [text]="'Имя: '+ usersData.firstname" class="labelLightStyle labelAcc"></Label>
+            <Label [text]="'Фамилия: ' + usersData.lastname" class="labelLightStyle labelAcc"></Label>
+            <Label [text]="'Отчество: ' + usersData.otchestvo" class="labelLightStyle labelAcc"></Label>
+            <Label [text]="'Дата рождения: ' + usersData.datebirth" class="labelLightStyle labelAcc"></Label>
+        </StackLayout>
+    <Label (tap)="goHelp($event)" class="labelAcc labelLightStyle" style="text-decoration: underline; color: #ff8e12" [text]="'Мои данные неверны или изменены.'"></Label>
+</FlexboxLayout>

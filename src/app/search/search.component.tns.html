@@ -1,0 +1,17 @@
+<ScrollView>
+    <StackLayout class="backgroundStyle">
+        <StackLayout (tap)="goToHome($event)" orientation="horizontal">
+            <StackLayout class="buttonStackBack" orientation="horizontal">
+                <Image src="res://leftarrow"></Image>
+            </StackLayout>
+        </StackLayout>
+        <TextView  style="text-align: left; width: 100%;" editable="false" class="labelSettings labelLightStyle" [text]="'Поиск пациентов'"></TextView>
+        <StackLayout class="formPatient" *ngFor="let users of allUsersList">
+            <Label class="label-fio labelDarkStyle" [text]="users.usersData.firstname+' '+users.usersData.lastname+' '+users.usersData.otchestvo"></Label>
+            <Label class="label-fio labelDarkStyle" [text]="'Дата рождения: '+users.usersData.datebirth"></Label>
+            <AbsoluteLayout>
+             <Button (tap)="goProfile(users.usersData.id)" class="btn-go-profile" [text]="'Перейти'"></Button>
+            </AbsoluteLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

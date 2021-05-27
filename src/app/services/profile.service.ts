@@ -65,6 +65,11 @@ export class ProfileService {
         let header = {'Authorization':"Bearer "+appSettings.getString("token")}
         return this.httpClient.get("https://chf-back.herokuapp.com/api/users-data/"+appSettings.getString("id_user"), {headers:header});
     }
+    getUsersDataWithId(id){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header = {'Authorization':"Bearer "+appSettings.getString("token")}
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/users-data/"+id, {headers:header});
+    }
 
     sendUsersData(name:string, lastName: string, middleName: string){
 

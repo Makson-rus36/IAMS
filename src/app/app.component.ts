@@ -4,12 +4,13 @@ import {AuthService} from '@src/app/services/auth.service';
 import {ProfileService} from '@src/app/services/profile.service';
 import {SheduleService} from '@src/app/services/shedule.service';
 import {SearchUsersService} from '@src/app/services/search.users.service';
+import {DiagnosService} from '@src/app/services/diagnos.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService, ProfileService, SheduleService, SearchUsersService]
+  providers: [AuthService, ProfileService, SheduleService, SearchUsersService, DiagnosService]
 })
 export class AppComponent implements OnInit {
 

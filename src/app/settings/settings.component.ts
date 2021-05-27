@@ -10,6 +10,7 @@ import {Page} from '@nativescript/core';
 
 export class SettingsComponent implements OnInit{
 
+    showDebug = false
     constructor(private router: Router, private page:Page) {
     }
 

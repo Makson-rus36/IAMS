@@ -14,6 +14,8 @@ import {ChatComponent} from '@src/app/chat/chat.component';
 import {ScheduleComponent} from '@src/app/medicineScheule/schedule.component';
 import {UpdateComponent} from '@src/app/update/update.component';
 import {Enter_sysComponent} from '@src/app/enter_sys/enter_sys.component';
+import {SearchComponent} from '@src/app/search/search.component';
+import {ProfileUserComponent} from '@src/app/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -67,5 +69,11 @@ export const routes: Routes = [
     },
     {
         path:'check_enter', component: Enter_sysComponent
+    },
+    {
+        path:'search', component:SearchComponent
+    },
+    {
+        path:'profile_user/:id', component: ProfileUserComponent
     }
 ];

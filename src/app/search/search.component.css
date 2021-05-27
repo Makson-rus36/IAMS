@@ -1,0 +1,71 @@
+@import "~src/app.css";
+
+.mainStackLayout {
+    text-align: center;
+    font-size: 16px;
+    max-width: 90%;
+    width: 90%;
+}
+
+.labelSettings{
+    font-size: 36px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-weight: 200;
+}
+
+Image{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 85px;
+    max-height: 85px;
+    width: 85px;
+    max-width: 85px;
+}
+
+.flexBox{
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.labelAcc{
+    text-align: left;
+    font-size: 18px;
+}
+
+.imageIcon{
+    align-content: flex-end;
+}
+
+.textFieldAcc{
+    placeholder-color: #d12662;
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    font-family: "Droid Sans Mono", sans-serif;
+}
+
+.formPatient{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    font-family: "Droid Sans Mono", sans-serif;
+}
+
+.label-fio{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.btn-go-profile{
+    position: relative;
+    float: left;
+    width: 300px;
+    margin: 10px;
+    background-color: #ff8e12;
+    color: white;
+    font-size: 16px;
+}
+

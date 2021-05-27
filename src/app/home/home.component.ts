@@ -66,4 +66,8 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['upd_state']);
     }
 
+    goToSearch($event){
+        this.router.navigate(['search']);
+    }
+
 }

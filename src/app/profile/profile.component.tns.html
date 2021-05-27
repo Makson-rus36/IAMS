@@ -1,0 +1,24 @@
+<FlexboxLayout class="backgroundStyle stackLayoutMainPage">
+    <StackLayout class="mainStackLayout form">
+        <StackLayout (tap)="goToSearch($event)" orientation="horizontal">
+            <StackLayout class="buttonStackBack" orientation="horizontal">
+                <Image src="res://leftarrow"></Image>
+            </StackLayout>
+        </StackLayout>
+        <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Профиль'"></Label>
+        <Label [text]="'Имя: '+ usersData.firstname" class="labelLightStyle labelAcc"></Label>
+        <Label [text]="'Фамилия: ' + usersData.lastname" class="labelLightStyle labelAcc"></Label>
+        <Label [text]="'Отчество: ' + usersData.otchestvo" class="labelLightStyle labelAcc"></Label>
+        <Label [text]="'Дата рождения: ' + usersData.datebirth" class="labelLightStyle labelAcc"></Label>
+        <StackLayout class="stackInfoUser backgroundStyleLight">
+            <Label class="label-weight-user labelDarkStyle" [text]="'Диагнозы'"></Label>
+            <Label *ngIf="usersDiagnosis.length==0" class="label-weight-user labelDarkStyle" [text]="'Диагнозов нет'"></Label>
+            <StackLayout *ngFor="let diagnosis of usersDiagnosis">
+                <Label class="label-weight-user labelDarkStyle" [text]="diagnosis.nameD"></Label>
+                <Label class="delimeter labelDarkStyle"></Label>
+            </StackLayout>
+        </StackLayout>
+        <Button (tap)="addDiagnosis($event)" [text]="'Добавить диагноз'"></Button>
+    </StackLayout>
+    <!--<Label (tap)="goHelp($event)" class="labelAcc labelLightStyle" style="text-decoration: underline; color: #ff8e12" [text]="'Мои данные неверны или изменены.'"></Label>-->
+</FlexboxLayout>

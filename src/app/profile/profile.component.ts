@@ -41,6 +41,8 @@ export class ProfileUserComponent implements OnInit{
     }
 
     addDiagnosis($event){
-
+        this.router.navigate(['diagnosis_add'], {queryParams:{
+            'user':this.id
+        }})
     }
 }

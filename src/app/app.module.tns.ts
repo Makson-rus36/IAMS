@@ -25,6 +25,7 @@ import {UpdateComponent} from '@src/app/update/update.component';
 import {Enter_sysComponent} from '@src/app/enter_sys/enter_sys.component';
 import {SearchComponent} from '@src/app/search/search.component';
 import {ProfileUserComponent} from '@src/app/profile/profile.component';
+import {DiagnosisAddComponent} from '@src/app/diagnosis/diagnosis.add.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {ProfileUserComponent} from '@src/app/profile/profile.component';
       UpdateComponent,
       Enter_sysComponent,
       SearchComponent,
-      ProfileUserComponent
+      ProfileUserComponent,
+      DiagnosisAddComponent
   ],
   imports: [
     NativeScriptDateTimePickerModule,

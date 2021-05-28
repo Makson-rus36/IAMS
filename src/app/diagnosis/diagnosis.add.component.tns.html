@@ -1,0 +1,101 @@
+<StackLayout *ngIf="isShowListPills" style="z-index: 10;" class="backgroundStyle">
+    <StackLayout class="popUpPills">
+        <StackLayout>
+            <Label editable="false" style="text-align: left; color: #1E1F26; font-size: 20px;" class="labelSettings labelLightStyle" [text]="'Выберите препарат'"></Label>
+            <Button style="position: relative; float: right;" (tap)="hideListPills($event)" class="buttonStyle" [text]="'Отмена'"></Button>
+        </StackLayout>
+        <ScrollView style="max-height: 80%">
+    <StackLayout *ngFor="let pill of pills">
+        <Label (tap)="selectPill(pill)" class="pillStyleSelect labelDarkStyle" [text]="pill.nameM"></Label>
+    </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</StackLayout>
+
+<StackLayout *ngIf="isShowEditListPills" style="z-index: 10;" class="backgroundStyle">
+    <StackLayout class="popUpPills">
+        <StackLayout>
+            <Label editable="false" style="text-align: left; color: #1E1F26; font-size: 20px;" class="labelSettings labelLightStyle" [text]="'Выберите препарат'"></Label>
+            <Button style="position: relative; float: right;" (tap)="hideEditListPills($event)" class="buttonStyle" [text]="'Отмена'"></Button>
+        </StackLayout>
+        <ScrollView style="max-height: 80%">
+            <StackLayout *ngFor="let pill of pills">
+                <Label (tap)="updatePill(pill)" class="pillStyleSelect labelDarkStyle" [text]="pill.nameM"></Label>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</StackLayout>
+
+<ScrollView class="backgroundStyle">
+
+    <StackLayout style="padding: 20px;" *ngIf="isAddTreatment && !isShowEditListPills">
+        <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Новый курс'"></Label>
+        <Label class="labelLightStyle labelAcc" [text]="'Название препарата'"></Label>
+        <TextField (tap)="showListPills($event)" class="textFieldLight textFieldAcc" hint="Выбрать..." [text]="newCourse.medicaments.nameM"></TextField>
+        <Label class="labelLightStyle labelAcc" [text]="'Расписание приема'"></Label>
+        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле"  (textChange)="editScheduleTreatment($event)"></TextField>
+        <Label class="labelLightStyle labelAcc" [text]="'Дозировка'"></Label>
+        <StackLayout style="height: 200px; padding: 5px; border-width: 1px; border-radius: 10px; border-color: #fff; border-style: dashed;">
+        <TextView class="textFieldLight textFieldAcc" style="text-decoration: none;"  hint="Заполните это поле"  (textChange)="editDoseTreatment($event)"></TextView>
+        </StackLayout>
+        <Label class="labelLightStyle labelAcc" [text]="'Начало приема'"></Label>
+        <DatePickerField [minDate]="minDate1" style=" color: white; font-size: 16px;height: 100px; placeholder-color: #d5d5d5;"  (dateChange)="onDateStartChange($event)" dateFormat="dd/MM/yyyy" hint="Выберите дату"></DatePickerField>
+        <Label class="labelLightStyle labelAcc" [text]="'Конец приема'"></Label>
+        <DatePickerField [minDate]="minDate2" style=" color: white; font-size: 16px;height: 100px; placeholder-color: #d5d5d5;" (dateChange)="onDateEndChange($event)" dateFormat="dd/MM/yyyy" hint="Выберите дату"></DatePickerField>
+        <Button (tap)="addNewTreatment($event)" [text]="'Добавить'"></Button>
+        <Button class="buttonStyle" (tap)="cancelAddTreatment($event)" [text]="'Отмена'"></Button>
+    </StackLayout>
+
+    <StackLayout style="padding: 20px;" *ngIf="isEditTreatment && !isShowListPills">
+        <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Изменить курс'"></Label>
+        <Label class="labelLightStyle labelAcc" [text]="'Название препарата'"></Label>
+        <TextField (tap)="showListPills($event)" class="textFieldLight textFieldAcc" hint="Выбрать..." [text]="editCourse.medicaments.nameM"></TextField>
+        <Label class="labelLightStyle labelAcc" [text]="'Расписание приема'"></Label>
+        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" [text]="editCourse.medicationSchedule" (textChange)="editScheduleTreatment($event)"></TextField>
+        <Label class="labelLightStyle labelAcc" [text]="'Дозировка'"></Label>
+        <StackLayout style="height: 200px; padding: 5px; border-width: 1px; border-radius: 10px; border-color: #fff; border-style: dashed;">
+            <TextView class="textFieldLight textFieldAcc" style="text-decoration: none;"  hint="Заполните это поле" [text]="editCourse.supplementationMedicament" (textChange)="editDoseTreatment($event)"></TextView>
+        </StackLayout>
+        <Label class="labelLightStyle labelAcc" [text]="'Начало приема'"></Label>
+        <DatePickerField [minDate]="minDate1" style=" color: white; font-size: 16px;height: 100px; placeholder-color: #d5d5d5;" [date]="getObjDate(editCourse.timeCourseStart)"  (dateChange)="onEditDateStartChange($event)" dateFormat="dd/MM/yyyy" hint="Выберите дату"></DatePickerField>
+        <Label class="labelLightStyle labelAcc" [text]="'Конец приема'"></Label>
+        <DatePickerField [minDate]="minDate2" style=" color: white; font-size: 16px;height: 100px; placeholder-color: #d5d5d5;" [date]="getObjDate(editCourse.timeCourseEnd)" (dateChange)="onEditDateEndChange($event)" dateFormat="dd/MM/yyyy" hint="Выберите дату"></DatePickerField>
+        <Button (tap)="editTreatment($event)" [text]="'Добавить'"></Button>
+        <Button class="buttonStyle" (tap)="cancelEditTreatment($event)" [text]="'Отмена'"></Button>
+    </StackLayout>
+
+    <StackLayout *ngIf="!isEditTreatment && !isAddTreatment" class="mainStackLayout form">
+        <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Новый диагноз'"></Label>
+        <Label [text]="'Название: '" class="labelLightStyle labelAcc"></Label>
+        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" (textChange)="editNameDiagnosis($event)"></TextField>
+        <Label [text]="'Описание: '" class="labelLightStyle labelAcc"></Label>
+        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" (textChange)="editDescriptionDiagnosis($event)"></TextField>
+        <StackLayout class="stackInfoUser backgroundStyleLight">
+            <StackLayout orientation="horizontal">
+                <Label class="labelAcc labelDarkStyle" [text]="'Курс лечения'"></Label>
+                <Button *ngIf="!isShowListTreatment" (tap)="showListTreatment($event)" style="background-color: #ff8e12; width: 300px;" class="buttonStyle" [text]="'Показать'"></Button>
+                <Button *ngIf="isShowListTreatment" (tap)="hideListTreatment($event)" style="background-color: #ff8e12; width: 300px;" class="buttonStyle" [text]="'Скрыть'"></Button>
+            </StackLayout>
+            <StackLayout *ngIf="isShowListTreatment">
+            <Label class="delimeter labelDarkStyle"></Label>
+            <Label *ngIf="course.length==0" [text]="'Курс лечения не назначен'" class="label-weight-user labelDarkStyle"></Label>
+            <Label *ngIf="course.length==0" class="delimeter labelDarkStyle"></Label>
+            <StackLayout *ngFor="let treatment of course">
+                <Label class="labelDarkStyle" style="text-align: left" [text]="'Препарат: '+treatment.medicaments.nameM"></Label>
+                <Label class="labelDarkStyle" style="text-align: left" [text]="'Дозировка: '+treatment.supplementationMedicament"></Label>
+                <Label class="labelDarkStyle" style="text-align: left" [text]="'Расписание: '+treatment.medicationSchedule"></Label>
+                <TextView editable="false" class="labelDarkStyle" style="font-size: 16px; padding: 0; margin: 0; text-align: left; height: 100px;" [text]="'Дата приема с '+getDate(treatment.timeCourseStart)+' по '+getDate(treatment.timeCourseEnd)">
+                </TextView>
+                <StackLayout orientation="horizontal">
+                <Button (tap)="changeTreatment(treatment)" style="background-color: #ff8e12; width: 200px;" class="buttonStyle" [text]="'Изменить'"></Button>
+                <Button (tap)="delTreatment(treatment)" style="width: 200px;" class="buttonStyle" [text]="'Удалить'"></Button>
+                </StackLayout>
+                <Label class="delimeter labelDarkStyle"></Label>
+            </StackLayout>
+            </StackLayout>
+            <Button style="width: 300px;" (tap)="addTreatment($event)" class="buttonStyle" [text]="'Добавить'"></Button>
+        </StackLayout>
+        <Button style="width: 80%" (tap)="addDiagnosis($event)" [text]="'Создать диагноз'"></Button>
+        <Button style="width: 80%" class="buttonStyle" (tap)="cancel($event)" [text]="'Отмена'"></Button>
+    </StackLayout>
+</ScrollView>

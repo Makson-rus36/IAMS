@@ -15,4 +15,13 @@ export class Todo {
             "otchestvo": "test3"
         }
     }
+
+    objHistCng_POST:{
+    "dateChange":"2021-05-27T12:00:00.000Z",
+    "descriptionChange": "101",
+    "typeChange": {
+        "id": 13
+    },
+    "usersDataId": 23
+}
 }

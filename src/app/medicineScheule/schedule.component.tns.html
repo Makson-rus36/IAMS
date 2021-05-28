@@ -10,9 +10,9 @@
 
     <FlexboxLayout class="backgroundStyleLight blockBackgroundPill" *ngFor="let pill of pills">
         <StackLayout class="blockPill">
-            <Label [text]="pill.name"></Label>
-            <Label [text]="pill.schedule"></Label>
-            <Button style="background-color: #ff8e12" class="buttonStyle" [text]="'Информация'" (tap)="goToInfoPill(pill.id)"></Button>
+            <Label [text]="pill.medicaments.nameM"></Label>
+            <Label [text]="pill.medicationSchedule"></Label>
+            <Button style="background-color: #ff8e12" class="buttonStyle" [text]="'Информация'" (tap)="goToInfoPill(pill.medicaments.id)"></Button>
         </StackLayout>
     </FlexboxLayout>
     </StackLayout>

@@ -1,5 +1,5 @@
 export class PillsModel {
-    name:string;
+    nameM:string;
     id:number;
-    schedule:string;
+    descriptionM:string;
 }

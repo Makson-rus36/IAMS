@@ -28,4 +28,12 @@ export class DiagnosService {
 
         return this.httpClient.post("https://chf-back.herokuapp.com/api/diagnosis", body, {headers:header})
     }
+
+    getPillsList(){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/medicaments-data", {headers:header})
+    }
 }

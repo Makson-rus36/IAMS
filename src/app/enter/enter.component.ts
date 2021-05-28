@@ -57,8 +57,7 @@ export class EnterComponent implements OnInit {
                     appSettings.setString("id_acc", String(this.authModelResp.accId));
                     appSettings.setString("id_user", String(this.authModelResp.userId));
                     appSettings.setString("psw_user", String(this.password));
-
-                    this.router.navigate(['home'])
+                    this.router.navigate(['check_enter'])
                 },
                 (error1: ErrorModel) => {
                     console.log(error1.status)

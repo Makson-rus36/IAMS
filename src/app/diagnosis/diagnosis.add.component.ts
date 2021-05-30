@@ -63,7 +63,18 @@ export class DiagnosisAddComponent implements OnInit{
         })
     }
     addDiagnosis($event){
+        this.diagnosService.addDiagnosis(this.diagnosis.descriptionD,this.diagnosis.doctorId, this.diagnosis.nameD, this.diagnosis.patientId)
+            .subscribe((x:DiagnosisModel)=>{
+            let idDiagnosis = x.id;
+            for (let treatmentCours of this.course) {
+                let bodyTreatment={
 
+                }
+            }
+                this.router.navigate(['profile_user/'+this.idUser])
+        }, (error:ErrorModel) => {
+            console.log(error)
+        });
     }
 
     cancel($event){

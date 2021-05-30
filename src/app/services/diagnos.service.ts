@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {TreatmentCourseModel} from '@src/app/models/treatment.course.model';
+import {DiagnosisModel} from '@src/app/models/diagnosis.model';
+import {ErrorModel} from '@src/app/models/error.model';
 
 @Injectable()
 export class DiagnosService {
@@ -27,6 +30,7 @@ export class DiagnosService {
         }
 
         return this.httpClient.post("https://chf-back.herokuapp.com/api/diagnosis", body, {headers:header})
+
     }
 
     getPillsList(){

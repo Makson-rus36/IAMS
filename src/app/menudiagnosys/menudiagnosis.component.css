@@ -1,0 +1,21 @@
+.mainStackLayout {
+    text-align: center;
+    font-size: 16px;
+    max-width: 90%;
+    width: 90%;
+}
+
+.labelHeaderMenu{
+    font-size: 36px;
+    font-family: "Droid Sans Mono", sans-serif;
+    font-weight: 200;
+}
+
+Image{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 85px;
+    max-height: 85px;
+    width: 85px;
+    max-width: 85px;
+}

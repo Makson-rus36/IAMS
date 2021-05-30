@@ -1,0 +1,13 @@
+<ScrollView class="backgroundStyle">
+    <StackLayout class="mainStackLayout">
+        <StackLayout (tap)="goToBack($event)" orientation="horizontal">
+            <StackLayout class="buttonStackBack" orientation="horizontal">
+                <Image src="res://leftarrow"></Image>
+            </StackLayout>
+        </StackLayout>
+        <Label class="labelLightStyle labelHeaderMenu" [text]="'Выберите диагноз'"></Label>
+    <StackLayout  *ngFor="let diagnos of diagnosis">
+        <Button (tap)="goPage(diagnos.id)" class="buttonStyle" [text]="diagnos.nameD"></Button>
+    </StackLayout>
+    </StackLayout>
+</ScrollView>

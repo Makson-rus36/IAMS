@@ -17,6 +17,21 @@ export class DiagnosService {
         return this.httpClient.get("https://chf-back.herokuapp.com/api/diagnosis?patientId="+id, {headers:header})
     }
 
+    getListDiagnosisWithPatientId(idPatient){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/diagnosis?patientId="+idPatient, {headers:header})
+    }
+    getDiagnosWithId(id){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/diagnosis/"+id, {headers:header})
+    }
+
     addDiagnosis(descrp:string, doctor_id:number, name_diagn: string, patient_id:number){
         const appSettings = require("tns-core-modules/application-settings");
         let header={

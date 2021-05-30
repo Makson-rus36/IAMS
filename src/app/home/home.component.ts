@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, Page} from '@nativescript/core';
+import * as application from "tns-core-modules/application";
 import {Router} from '@angular/router';
 import {ProfileService} from '@src/app/services/profile.service';
 import {ModelUser} from '@src/app/models/modelUser';
@@ -16,9 +17,28 @@ export class HomeComponent implements OnInit {
     typeAccess:string = "";
 
     constructor(private page: Page, private router: Router, private profileService: ProfileService) {
+
     }
 
     ngOnInit() {
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/home", false)) {
+                    let options = {
+                        title: "Выйти",
+                        message: "Вы действительно хотите выйти из приложения?",
+                        okButtonText: "Да",
+                        cancelButtonText: "Нет"
+                    };
+                    data.cancel = true;
+                    // @ts-ignore
+                    confirm(options).then((result: boolean) => {
+                        if(result==true)
+                            application.android.foregroundActivity.finish();
+                    });
+                }
+            });
+        }
         this.page.actionBarHidden = true;
         const appSettings = require("tns-core-modules/application-settings");
         this.typeAccess = appSettings.getString("acc_access");
@@ -69,5 +89,6 @@ export class HomeComponent implements OnInit {
     goToSearch($event){
         this.router.navigate(['search']);
     }
+
 
 }

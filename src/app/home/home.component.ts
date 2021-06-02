@@ -78,7 +78,10 @@ export class HomeComponent implements OnInit {
     }
 
     goToChat($event) {
-        this.router.navigate(['chat']);
+        this.router.navigate(['diagnosis_select'],{queryParams:{
+                "go":"chat",
+                "from":"home"
+            }});
     }
 
     goToSchedule($event) {

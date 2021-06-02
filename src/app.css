@@ -42,3 +42,59 @@
     placeholder-color: #d5d5d5;
     color: white
 }
+
+
+.cv-wrapper {
+    height: 200px;
+    width: 200px;
+}
+
+.cv0 {
+    height: 200px;
+    width: 200px;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+
+    animation-delay: 200ms;
+    animation-timing-function: ease;
+}
+
+.cv1 {
+    height: 200px;
+    width: 200px;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+.cv-lbl1 {
+    height: 100px;
+    width: 200px;
+    background-color: #202c63;
+}
+
+.cv-ring {
+    top: 36px;
+    left: 36px;
+    height: 128px;
+    width: 128px;
+    background-color: #ff8e12;
+    border-radius: 64px;
+}
+
+.inner-circle2 {
+    height: 100px;
+    width: 100px;
+    background-color: #202c63;
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    99.9% {transform: rotate(360deg);}
+    100% {transform: rotate(0deg);}
+}

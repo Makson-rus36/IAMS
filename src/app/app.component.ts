@@ -6,12 +6,13 @@ import {SheduleService} from '@src/app/services/shedule.service';
 import {SearchUsersService} from '@src/app/services/search.users.service';
 import {DiagnosService} from '@src/app/services/diagnos.service';
 import {Router} from '@angular/router';
+import {ChatService} from '@src/app/services/chat.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService, ProfileService, SheduleService, SearchUsersService, DiagnosService]
+  providers: [AuthService, ProfileService, SheduleService, SearchUsersService, DiagnosService, ChatService]
 })
 export class AppComponent implements OnInit {
 constructor(private router:Router) {

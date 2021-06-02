@@ -1,3 +1,5 @@
+@import "~src/app.css";
+
 .mainStackLayout {
     text-align: center;
     font-size: 16px;
@@ -19,3 +21,4 @@ Image{
     width: 85px;
     max-width: 85px;
 }
+

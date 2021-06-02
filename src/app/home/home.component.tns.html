@@ -15,7 +15,7 @@
     </StackLayout>
     <Button *ngIf="typeAccess=='PATIENT'" [text]="'Пройти тест'" class="buttonStyle"></Button>
     <Button *ngIf="typeAccess=='PATIENT'" [text]="'Прием лекарств'" (tap)="goToSchedule($event)" class="buttonStyle"></Button>
-    <Button *ngIf="typeAccess=='PATIENT'" [text]="'Переписка с врачом'" (tap)="goToChat($event)" class="buttonStyle"></Button>
+    <Button [text]="typeAccess=='PATIENT'?'Переписка с врачом':'Переписка с пациентом'" (tap)="goToChat($event)" class="buttonStyle"></Button>
     <Button *ngIf="typeAccess=='PATIENT'" [text]="'Прочитать рекомендации'" class="buttonStyle" (tap)="goToRecommendation($event)"></Button>
     <Button *ngIf="typeAccess=='DOCTOR'" [text]="'Поиск пациентов'" class="buttonStyle" (tap)="goToSearch($event)"></Button>
     <Button [text]="'Настройки'" class="buttonStyle" (tap)="goToSettings($event)"></Button>

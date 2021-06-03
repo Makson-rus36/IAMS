@@ -72,7 +72,7 @@ export class AccountComponent implements OnInit{
                 else {
                     if(appSettings.getString("psw_user")==this.userOldPassword){
                         this.authService.updPassword(this.userNewPassword).subscribe((x)=>{
-                            console.log(x)
+                            this.onExit(null)
                         }, (error:ErrorModel) => {
                             console.log(error)
                         });

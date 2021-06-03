@@ -14,15 +14,15 @@
             </StackLayout>
             <StackLayout class="loginStack">
                 <Label *ngIf="!isEdit" class="labelLightStyle labelAcc" [text]="'Пароль:'"></Label>
-                <TextField *ngIf="!isEdit" class="textFieldLight textFieldAcc" editable="false" hint="Пароль"
+                <TextField *ngIf="!isEdit" secure="true" class="textFieldLight textFieldAcc" editable="false" hint="Пароль"
                            [text]="'***************'"></TextField>
 
                 <Label *ngIf="isEdit" class="labelLightStyle labelAcc" [text]="'Новый пароль:'"></Label>
-                <TextField *ngIf="isEdit" class="textFieldLight textFieldAcc" editable="true" hint="Заполните это поле"
+                <TextField *ngIf="isEdit" secure="true" class="textFieldLight textFieldAcc" editable="true" hint="Заполните это поле"
                            (textChange)="editNewPswChng($event)"></TextField>
 
                 <Label *ngIf="isEdit" class="labelLightStyle labelAcc" [text]="'Повторите новый пароль:'"></Label>
-                <TextField *ngIf="isEdit" class="textFieldLight textFieldAcc" editable="true" hint="Заполните это поле"
+                <TextField *ngIf="isEdit" secure="true" class="textFieldLight textFieldAcc" editable="true" hint="Заполните это поле"
                            (textChange)="editConfPswChng($event)"></TextField>
 
                 <Label *ngIf="isEdit" class="labelLightStyle labelAcc" [text]="'Старый пароль:'"></Label>

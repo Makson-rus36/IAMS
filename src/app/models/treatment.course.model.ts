@@ -8,4 +8,5 @@ export class TreatmentCourseModel {
     timeCourseStart:string;
     diagnosisId:number;
     medicaments: PillsModel;
+    medicamentsId:number;
 }

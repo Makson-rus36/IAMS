@@ -74,6 +74,14 @@ export class DiagnosService {
         return this.httpClient.get("https://chf-back.herokuapp.com/api/medicaments-data", {headers:header})
     }
 
+    getPill(id){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/medicaments-data/"+id, {headers:header})
+    }
+
     getListDiagnosisWithDoctorIdAndPatientId(idPatient, idDoctor) {
         const appSettings = require("tns-core-modules/application-settings");
         let header={

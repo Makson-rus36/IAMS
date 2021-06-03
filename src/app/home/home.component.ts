@@ -85,7 +85,10 @@ export class HomeComponent implements OnInit {
     }
 
     goToSchedule($event) {
-        this.router.navigate(['schedule']);
+        this.router.navigate(['diagnosis_select'],{queryParams:{
+                "go":"schedule",
+                "from":"home"
+            }});
     }
 
     goUpdate($event) {

@@ -34,6 +34,7 @@
     "nativescript": "~8.0.1",
     "nativescript-auth0": "^4.0.0",
     "nativescript-drop-down": "^6.0.0",
+    "nativescript-ui-chart": "^8.0.2",
     "react-native-auth0": "^2.8.3",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.6.0",

@@ -53,22 +53,23 @@ export class MenudiagnosisComponent implements OnInit{
                     })
                     this.dataPatinent.push(data);
                 }
-        this.isLoadedPage=true;
             }, (error: ErrorModel) => {
                 console.log(error)
             })
         }else
         this.diagnosService.getListDiagnosisWithPatientId(appSettings.getString("id_user")).subscribe(x=>{
             this.diagnosis = <DiagnosisModel[]>x["content"];
+            this.isLoadedPage=true;
         }, (error: ErrorModel) => {
             console.log(error)
         })
     }
 
-    goPage(idDiagnosis){
+    goPage(idDiagnosis, idPatient){
 
         this.router.navigate([this.pageGo], {queryParams:{
-            "idDiagnosis":idDiagnosis
+            "idDiagnosis":idDiagnosis,
+                "idUser":idPatient
         }})
     }
 

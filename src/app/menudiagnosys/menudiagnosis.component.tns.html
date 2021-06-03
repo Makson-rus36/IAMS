@@ -8,7 +8,7 @@
         <Label class="labelLightStyle labelHeaderMenu"
                [text]="typeAccess=='PATIENT'?'Выберите диагноз':'Выберите пациента'"></Label>
 
-        <AbsoluteLayout *ngIf="diagnosis.length!=counterUsers" class="cv-wrapper">
+        <AbsoluteLayout *ngIf="diagnosis.length!=counterUsers&&typeAccess=='DOCTOR'||typeAccess=='PATIENT'&&!isLoadedPage" class="cv-wrapper">
             <AbsoluteLayout class="cv0">
                 <Label class="cv-ring" ></Label>
                 <Label class="cv-lbl1" ></Label>
@@ -19,16 +19,16 @@
                 <Label class="inner-circle2" ></Label>
             </AbsoluteLayout>
         </AbsoluteLayout>
-        <StackLayout *ngIf="diagnosis.length==(counterUsers)">
+        <StackLayout *ngIf="diagnosis.length==(counterUsers)||isLoadedPage">
         <StackLayout *ngIf="typeAccess=='DOCTOR'" >
         <StackLayout *ngFor="let dataD of dataPatinent">
-            <Button (tap)="goPage(dataD.modelDiagnosisData.id)" class="buttonStyle"
+            <Button (tap)="goPage(dataD.modelDiagnosisData.id, dataD.modelDiagnosisData.patientId)" class="buttonStyle"
                     [text]="dataD.modelUserData.firstname+' '+dataD.modelUserData.lastname+' '+dataD.modelUserData.otchestvo"></Button>
         </StackLayout>
         </StackLayout>
         <StackLayout *ngIf="typeAccess=='PATIENT'">
         <StackLayout *ngFor="let diagnos of diagnosis">
-            <Button (tap)="goPage(diagnos.id)" class="buttonStyle" [text]="diagnos.nameD"></Button>
+            <Button (tap)="goPage(diagnos.id, diagnos.patientId)" class="buttonStyle" [text]="diagnos.nameD"></Button>
         </StackLayout>
         </StackLayout>
         </StackLayout>

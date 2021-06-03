@@ -13,7 +13,13 @@ export class ProfileService {
     getInfoHealth(){
         const appSettings = require("tns-core-modules/application-settings");
         let header = {'Authorization':"Bearer "+appSettings.getString("token")}
-        return this.httpClient.get("https://chf-back.herokuapp.com/api/history-change?user_id="+appSettings.getString("id_user"), {headers:header})
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/history-change?user_id="+appSettings.getString("id_user")+'&sort=id,DESC&size=3&page=0', {headers:header})
+    }
+
+    getInfoHealthTop(idPatient){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header = {'Authorization':"Bearer "+appSettings.getString("token")}
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/history-change?user_id="+idPatient+'&sort=id,ASC&size=100&page=0', {headers:header})
     }
 
     sendInfoHealth(weight:string, pulse: string, pressure: string, router: Router){

@@ -7,12 +7,14 @@ import {SearchUsersService} from '@src/app/services/search.users.service';
 import {DiagnosService} from '@src/app/services/diagnos.service';
 import {Router} from '@angular/router';
 import {ChatService} from '@src/app/services/chat.service';
+import {DatePipe} from '@angular/common';
+import {DataService} from '@src/app/models/test_DataService';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService, ProfileService, SheduleService, SearchUsersService, DiagnosService, ChatService]
+  providers: [AuthService, ProfileService, SheduleService, SearchUsersService, DiagnosService, ChatService, DataService]
 })
 export class AppComponent implements OnInit {
 constructor(private router:Router) {

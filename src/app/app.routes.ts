@@ -18,6 +18,7 @@ import {SearchComponent} from '@src/app/search/search.component';
 import {ProfileUserComponent} from '@src/app/profile/profile.component';
 import {DiagnosisAddComponent} from '@src/app/diagnosis/diagnosis.add.component';
 import {MenudiagnosisComponent} from '@src/app/menudiagnosys/menudiagnosis.component';
+import {ProfileUserFull} from '@src/app/chartsUsers/profile.user.full';
 
 export const routes: Routes = [
   {
@@ -77,6 +78,9 @@ export const routes: Routes = [
     },
     {
         path:'profile_user/:id', component: ProfileUserComponent
+    },
+    {
+        path:'profile_user_full', component: ProfileUserFull
     },
     {
         path:'diagnosis_add', component: DiagnosisAddComponent

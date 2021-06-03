@@ -27,6 +27,9 @@ import {SearchComponent} from '@src/app/search/search.component';
 import {ProfileUserComponent} from '@src/app/profile/profile.component';
 import {DiagnosisAddComponent} from '@src/app/diagnosis/diagnosis.add.component';
 import {MenudiagnosisComponent} from '@src/app/menudiagnosys/menudiagnosis.component';
+import {ProfileUserFull} from '@src/app/chartsUsers/profile.user.full';
+import {NativeScriptUIChartModule} from 'nativescript-ui-chart/angular';
+import {DataService} from '@src/app/models/test_DataService';
 
 
 @NgModule({
@@ -46,17 +49,19 @@ import {MenudiagnosisComponent} from '@src/app/menudiagnosys/menudiagnosis.compo
       SearchComponent,
       ProfileUserComponent,
       DiagnosisAddComponent,
-      MenudiagnosisComponent
+      MenudiagnosisComponent,
+      ProfileUserFull
   ],
   imports: [
     NativeScriptDateTimePickerModule,
+    NativeScriptUIChartModule,
     DropDownModule,
       HttpClientModule,
     BrowserAnimationsModule,
     NativeScriptModule,
     AppRoutingModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, DataService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

@@ -1,6 +1,13 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {EventData, Page, ScrollView, TextView} from '@nativescript/core';
+import {
+    AndroidActivityBackPressedEventData,
+    AndroidApplication,
+    EventData,
+    Page,
+    ScrollView,
+    TextView
+} from '@nativescript/core';
 import {UserMessage} from '../models/userMessage'
 import {DatePipe} from '@angular/common';
 import {ModelUser} from '@src/app/models/modelUser';
@@ -10,6 +17,11 @@ import {DiagnosService} from '@src/app/services/diagnos.service';
 import {interval, Subscription} from 'rxjs';
 import {ErrorModel} from '@src/app/models/error.model';
 import {ChatService} from '@src/app/services/chat.service';
+import * as application from 'tns-core-modules/application';
+import {utils} from 'protractor';
+import { isIOS, isAndroid } from 'tns-core-modules/platform';
+import * as utils1 from 'tns-core-modules/utils/utils';
+declare const UIApplication;
 
 @Component({
     selector: 'app-chat',
@@ -20,6 +32,7 @@ import {ChatService} from '@src/app/services/chat.service';
 export class ChatComponent implements OnInit{
     @ViewChild('messagesList') private myScrollContainer: ElementRef<ScrollView>;
     textMessage: string='';
+    pageSize=20;
     isTap:boolean = false;
     isUpdMesEnb = false;
     isLoadProfiles = false;isLoadMessages = false;
@@ -41,7 +54,7 @@ export class ChatComponent implements OnInit{
                 this.idDiagnosis = queryParam['idDiagnosis'];
             }
         );
-        interval(3000).subscribe(x => {
+        interval(1000).subscribe(x => {
             if(this.isUpdMesEnb)
                 this.updateMessages();
         });
@@ -61,6 +74,16 @@ export class ChatComponent implements OnInit{
     }*/
 
     ngOnInit() {
+
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/chat", false)) {
+                    data.cancel = true;
+                    // @ts-ignore
+                            this.goToHome();
+                }
+            });
+        }
         const appSettings = require("tns-core-modules/application-settings");
         this.diagnosService.getDiagnosWithId(this.idDiagnosis).subscribe((x:DiagnosisModel)=>{
            this.profileService.getUsersDataWithId(x.patientId).subscribe((p:ModelUser)=>{
@@ -90,11 +113,23 @@ export class ChatComponent implements OnInit{
     }
 
     goToHome($event){
+        this.isUpdMesEnb = false;
         this.router.navigate(['home']);
     }
 
     addMessage($event){
-
+        let newMessage = new UserMessage();
+        newMessage.messageData = this.textMessage;
+        newMessage.recipientId = Number(this.doctorData.id);
+        newMessage.dateMessage = (new Date().toISOString())
+            if (isIOS) {
+                UIApplication.sharedApplication.keyWindow.endEditing(true);
+            }
+            if (isAndroid) {
+                utils1.ad.dismissSoftInput();
+            }
+            this.textMessage="";
+        this.chatService.sendNewMessage(newMessage)
     }
 
     onTextChange(args: EventData) {
@@ -104,29 +139,40 @@ export class ChatComponent implements OnInit{
 
 
     private updateMessages() {
-        this.chatService.getListMessages(this.userData.id, this.doctorData.id).subscribe((x)=>{
+        this.newMessages = [];
+        //console.log("upd:s")
+        this.chatService.getListMessages(this.userData.id, this.doctorData.id, this.pageSize).subscribe((x)=>{
+            //console.log(x)
             this.newMessages = this.newMessages.concat((<UserMessage[]>x['content']))
-            this.chatService.getListMessages(this.doctorData.id, this.userData.id).subscribe((x)=>{
-                this.newMessages = this.newMessages.concat((<UserMessage[]>x['content']))
+            this.chatService.getListMessages(this.doctorData.id, this.userData.id, this.pageSize).subscribe((y)=>{
+                //console.log(y)
+                this.newMessages = this.newMessages.concat((<UserMessage[]>y['content']))
                 this.isLoadMessages=true;
+                //console.log(this.newMessages.length+"/"+this.messages.length)
                 if(this.newMessages.length!=this.messages.length) {
-                    this.messages = this.newMessages;
-                    this.messages = this.messages.sort((x, y) => {
-                        if (new Date(x.messageData) > new Date(y.messageData))
-                            return 1;
-                        else if (new Date(x.messageData) > new Date(y.messageData))
-                            return -1;
-                        else
-                            return 0;
+                    //this.messages = this.newMessages;
+                    this.newMessages = this.newMessages.sort((x1, y1) => {
+                        //console.log("d2"+Date.parse(y1.dateMessage)+"/d1"+Date.parse(x1.dateMessage))
+                        return Date.parse(x1.dateMessage) - Date.parse(y1.dateMessage)
                     })
-                    this.messages.forEach(value => {
-                        var date = new Date(value.dateMessage);
-                        value.dateMessage = this.date1.transform(date, "MM/d/yy, hh:mm a");
+                    //console.log("from: "+(this.newMessages.length-this.pageSize)+" to"+this.newMessages.length)
+                    if(this.newMessages.length<this.pageSize)
+                        this.newMessages = this.newMessages.slice(0,this.newMessages.length)
+                    else
+                        this.newMessages = this.newMessages.slice(this.newMessages.length-this.pageSize,this.newMessages.length)
+                    //console.log(this.messages.length)
+                    //console.log(this.messages)
+                    this.newMessages.forEach(value => {
+                        let d = new Date(new Date(Date.parse(value.dateMessage)).toLocaleString("ru-RU", {timeZone:"GMT"+(new Date().getTimezoneOffset() / 60)}));
+                        d.setHours(d.getHours()-(new Date().getTimezoneOffset() / 60))
+                        value.dateMessage = this.date1.transform(d, "MM/dd/yy, HH:mm");
                     });
+                    this.messages = this.newMessages;
+                    //console.log("upd:e")
                     if(!this.isFirstInit){
                         this.isFirstInit = true;
-                        this.scrollElem.scrollToVerticalOffset(this.scrollElem.scrollableHeight, false);
                         this.disableScrollDown=false;
+                        this.scrollElem.scrollToVerticalOffset(this.scrollElem.scrollableHeight, false);
                     }
 
                 }
@@ -139,11 +185,17 @@ export class ChatComponent implements OnInit{
     }
 
     scrollEvent(){
-        if(this.isFirstInit)
+        //console.log(this.scrollElem.verticalOffset)
+        if(this.isFirstInit){
+            if(this.scrollElem.verticalOffset==0){
+                this.pageSize+=20;
+                this.isLoadMessages=false;
+            }
         if(this.scrollElem.scrollableHeight==this.scrollElem.verticalOffset)
             this.disableScrollDown=false;
         else
             this.disableScrollDown=true;
+        }
     }
 
     onScroll(data:EventData) {

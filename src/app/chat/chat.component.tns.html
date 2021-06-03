@@ -1,48 +1,48 @@
 <StackLayout class="backgroundStyle">
-<AbsoluteLayout *ngIf="!isLoadMessages||!isLoadProfiles" class="cv-wrapper">
-    <AbsoluteLayout class="cv0">
-        <Label class="cv-ring" ></Label>
-        <Label class="cv-lbl1" ></Label>
-    </AbsoluteLayout>
-
-    <AbsoluteLayout class="cv1">
-        <Label class="cv-lbl1" ></Label>
-        <Label class="inner-circle2" ></Label>
-    </AbsoluteLayout>
-</AbsoluteLayout>
 </StackLayout>
-    <GridLayout *ngIf="isLoadMessages&&isLoadProfiles"  rows="50,1*, 50" class="backgroundStyle">
+    <GridLayout  rows="50,1*, 50" class="backgroundStyle">
         <GridLayout columns="30,1*" row="0" class="backgroundStyleLight headerMessage">
             <StackLayout col="0" (tap)="goToHome($event)" orientation="horizontal">
                 <StackLayout class="buttonStackBack" orientation="horizontal">
                     <Image src="res://leftarrow"></Image>
                 </StackLayout>
             </StackLayout>
-            <Label col="1" class="labelDarkStyle headerNameUser" [text]="doctorData.firstname +' '+ doctorData.lastname"></Label>
+            <Label col="1" class="labelDarkStyle headerNameUser" [text]="doctorData?.firstname +' '+ doctorData?.lastname"></Label>
         </GridLayout>
         <ScrollView #messagesList (scroll)="scrollEvent()" (loaded)="onScroll($event)" row="1">
         <StackLayout style="width: 100%">
-            <Label *ngIf="messages.length==0" class="labelLightStyle headerNameUser" [text]="'Сообщений пока нет!'"></Label>
+            <AbsoluteLayout *ngIf="!isLoadMessages||!isLoadProfiles" class="cv-wrapper">
+                <AbsoluteLayout class="cv0">
+                    <Label class="cv-ring" ></Label>
+                    <Label class="cv-lbl1" ></Label>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout class="cv1">
+                    <Label class="cv-lbl1" ></Label>
+                    <Label class="inner-circle2" ></Label>
+                </AbsoluteLayout>
+            </AbsoluteLayout>
+            <Label *ngIf="messages?.length==0&&isLoadMessages&&isLoadProfiles" class="labelLightStyle headerNameUser" [text]="'Сообщений пока нет!'"></Label>
             <FlexboxLayout flexDirection="column-reverse" justifyContent="space-around" alignItems="stretch" style="margin-top: 20px; border-radius: 10px;" *ngFor="let message of messages">
-                <StackLayout *ngIf="message.senderId!=userData.id" alignSelf="flex-start"  class="messageSender">
+                <StackLayout *ngIf="message?.senderId!=userData?.id" alignSelf="flex-start"  class="messageSender">
                     <StackLayout orientation="horizontal">
-                        <Label style="font-size: 22px" [text]="doctorData.firstname+' '"></Label>
-                        <Label  [text]="message.dateMessage" class="timeBlock"></Label>
+                        <Label style="font-size: 22px" [text]="doctorData?.firstname+' '"></Label>
+                        <Label  [text]="message?.dateMessage" class="timeBlock"></Label>
                     </StackLayout>
-                    <TextView style="max-width: 500px; min-height: 50px; font-size: 18px; color: white; width: 500px;" editable="false" [text]="message.messageData"></TextView>
+                    <TextView style="max-width: 500px; min-height: 50px; font-size: 18px; color: white; width: 500px;" editable="false" [text]="message?.messageData"></TextView>
                 </StackLayout>
-                <StackLayout *ngIf="message.senderId==userData.id" alignSelf="flex-end" class="messageYou">
+                <StackLayout *ngIf="message?.senderId==userData?.id" alignSelf="flex-end" class="messageYou">
                     <StackLayout orientation="horizontal">
                         <Label style="font-size: 22px" [text]="'Вы '"></Label>
-                        <Label  [text]="message.dateMessage" class="timeBlock"></Label>
+                        <Label  [text]="message?.dateMessage" class="timeBlock"></Label>
                     </StackLayout>
-                    <TextView style="max-width: 500px; min-height: 100px; font-size: 18px; color: white; width: 500px;" editable="false" [text]="message.messageData"></TextView>
+                    <TextView style="max-width: 500px; min-height: 100px; font-size: 18px; color: white; width: 500px;" editable="false" [text]="message?.messageData"></TextView>
                 </StackLayout>
             </FlexboxLayout>
         </StackLayout>
         </ScrollView>
             <GridLayout row="2" columns="1*,120" class="backgroundStyleLight" style="position: fixed; bottom: 2px;">
-                <TextView (textChange)="onTextChange($event)" hint="Сообщение" col="0" class="messageEnterField input input-border"></TextView>
+                <TextView (textChange)="onTextChange($event)" [text]="textMessage" hint="Сообщение" col="0" class="messageEnterField input input-border"></TextView>
                 <Button class="buttonStyle" (tap)="addMessage($event)" col="1" [text]="'Отправить'"></Button>
             </GridLayout>
     </GridLayout>

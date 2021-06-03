@@ -4,11 +4,11 @@
     <StackLayout *ngIf="typeAccess=='PATIENT'" class="infoUser backgroundStyleLight">
         <Label class="label-first labelDarkStyle" [text]="'Характеристики'"></Label>
         <StackLayout class="stackInfoUser">
-            <Label class="label-weight-user labelDarkStyle" [text]="'Вес: '+historyChange[0].descriptionChange"></Label>
+            <Label class="label-weight-user labelDarkStyle" [text]="'Вес: '+historyChange[0]?.descriptionChange"></Label>
             <Label class="delimeter labelDarkStyle"></Label>
-            <Label [text]="'Пульс: '+historyChange[2].descriptionChange" class="labelDarkStyle"></Label>
+            <Label [text]="'Пульс: '+historyChange[2]?.descriptionChange" class="labelDarkStyle"></Label>
             <Label class="delimeter labelDarkStyle"></Label>
-            <Label [text]="'Давление: '+historyChange[1].descriptionChange" class="labelDarkStyle"></Label>
+            <Label [text]="'Давление: '+historyChange[1]?.descriptionChange" class="labelDarkStyle"></Label>
             <Label class="delimeter"></Label>
             <Button [text]="'Обновить'" style="background-color: #ff8e12" (tap)="goUpdate($event)" class="buttonStyle"></Button>
         </StackLayout>
@@ -17,7 +17,8 @@
     <Button *ngIf="typeAccess=='PATIENT'" [text]="'Прием лекарств'" (tap)="goToSchedule($event)" class="buttonStyle"></Button>
     <Button [text]="typeAccess=='PATIENT'?'Переписка с врачом':'Переписка с пациентом'" (tap)="goToChat($event)" class="buttonStyle"></Button>
     <Button *ngIf="typeAccess=='PATIENT'" [text]="'Прочитать рекомендации'" class="buttonStyle" (tap)="goToRecommendation($event)"></Button>
-    <Button *ngIf="typeAccess=='DOCTOR'" [text]="'Поиск пациентов'" class="buttonStyle" (tap)="goToSearch($event)"></Button>
+    <Button  *ngIf="typeAccess=='DOCTOR'" [text]="'Поиск пациентов'" class="buttonStyle" (tap)="goToSearch($event)"></Button>
+    <Button  *ngIf="typeAccess=='DOCTOR'" [text]="'Мои пациенты'" class="buttonStyle" (tap)="goToPatient($event)"></Button>
     <Button [text]="'Настройки'" class="buttonStyle" (tap)="goToSettings($event)"></Button>
 </StackLayout>
 </ScrollView>

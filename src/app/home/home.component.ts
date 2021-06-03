@@ -96,5 +96,10 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['search']);
     }
 
-
+    goToPatient($event){
+        this.router.navigate(['diagnosis_select'],{queryParams:{
+                "go":"profile_user_full",
+                "from":"home"
+            }});
+    }
 }

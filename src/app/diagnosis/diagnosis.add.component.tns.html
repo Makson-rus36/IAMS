@@ -67,9 +67,9 @@
     <StackLayout *ngIf="!isEditTreatment && !isAddTreatment" class="mainStackLayout form">
         <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Новый диагноз'"></Label>
         <Label [text]="'Название: '" class="labelLightStyle labelAcc"></Label>
-        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" (textChange)="editNameDiagnosis($event)"></TextField>
+        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" [text]="diagnosis.nameD" (textChange)="editNameDiagnosis($event)"></TextField>
         <Label [text]="'Описание: '" class="labelLightStyle labelAcc"></Label>
-        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" (textChange)="editDescriptionDiagnosis($event)"></TextField>
+        <TextField class="textFieldLight textFieldAcc" hint="Заполните это поле" [text]="diagnosis.descriptionD" (textChange)="editDescriptionDiagnosis($event)"></TextField>
         <StackLayout class="stackInfoUser backgroundStyleLight">
             <StackLayout orientation="horizontal">
                 <Label class="labelAcc labelDarkStyle" [text]="'Курс лечения'"></Label>

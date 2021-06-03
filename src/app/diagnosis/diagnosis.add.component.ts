@@ -68,8 +68,14 @@ export class DiagnosisAddComponent implements OnInit{
             let idDiagnosis = x.id;
             for (let treatmentCours of this.course) {
                 let bodyTreatment={
-
+                    "diagnosisId":idDiagnosis,
+                    "medicamentsId": treatmentCours.medicaments.id,
+                    "medicationSchedule": treatmentCours.medicationSchedule,
+                    "supplementationMedicament": treatmentCours.supplementationMedicament,
+                    "timeCourseEnd": treatmentCours.timeCourseEnd,
+                    "timeCourseStart": treatmentCours.timeCourseStart
                 }
+                this.diagnosService.addTreatmentCourse(bodyTreatment)
             }
                 this.router.navigate(['profile_user/'+this.idUser])
         }, (error:ErrorModel) => {
@@ -83,6 +89,7 @@ export class DiagnosisAddComponent implements OnInit{
 
     editNameDiagnosis(args: EventData){
         this.diagnosis.nameD = (<TextField>args.object).text;
+
     }
 
     editDescriptionDiagnosis(args: EventData){

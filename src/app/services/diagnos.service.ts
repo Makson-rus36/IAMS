@@ -51,6 +51,18 @@ export class DiagnosService {
         }
 
         return this.httpClient.post("https://chf-back.herokuapp.com/api/diagnosis", body, {headers:header})
+    }
+
+    addTreatmentCourse(body){
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        this.httpClient.post("https://chf-back.herokuapp.com/api/treatment-courses", body, {headers:header}).subscribe(x=>{
+           // console.log(x)
+        }, error => {
+            console.log(error)
+        })
 
     }
 
@@ -60,5 +72,13 @@ export class DiagnosService {
             'Authorization':"Bearer "+appSettings.getString("token")
         }
         return this.httpClient.get("https://chf-back.herokuapp.com/api/medicaments-data", {headers:header})
+    }
+
+    getListDiagnosisWithDoctorIdAndPatientId(idPatient, idDoctor) {
+        const appSettings = require("tns-core-modules/application-settings");
+        let header={
+            'Authorization':"Bearer "+appSettings.getString("token")
+        }
+        return this.httpClient.get("https://chf-back.herokuapp.com/api/diagnosis?doctorId="+idDoctor+"&patientId="+idPatient, {headers:header})
     }
 }

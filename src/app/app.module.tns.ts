@@ -30,6 +30,7 @@ import {MenudiagnosisComponent} from '@src/app/menudiagnosys/menudiagnosis.compo
 import {ProfileUserFull} from '@src/app/chartsUsers/profile.user.full';
 import {NativeScriptUIChartModule} from 'nativescript-ui-chart/angular';
 import {DataService} from '@src/app/models/test_DataService';
+import {DiagnosisChangeComponent} from '@src/app/changeDiagnosis/diagnosis.change.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {DataService} from '@src/app/models/test_DataService';
       ProfileUserComponent,
       DiagnosisAddComponent,
       MenudiagnosisComponent,
-      ProfileUserFull
+      ProfileUserFull,
+      DiagnosisChangeComponent
   ],
   imports: [
     NativeScriptDateTimePickerModule,

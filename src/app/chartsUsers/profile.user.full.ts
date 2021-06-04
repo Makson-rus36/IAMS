@@ -24,6 +24,7 @@ export class ProfileUserFull implements OnInit{
 
     private _categoricalSource: ObservableArray<ModelHistoryChangesWeight>;
     private _categoricalSourcePressure: ObservableArray<ModelHistoryChangesPressure>;
+    private _categoricalSourcePulse: ObservableArray<ModelHistoryChangesPulse>;
     get categoricalSource(): ObservableArray<ModelHistoryChangesWeight> {
         return this._categoricalSource;
     }
@@ -31,11 +32,28 @@ export class ProfileUserFull implements OnInit{
     get categoricalSourcePressure(): ObservableArray<ModelHistoryChangesPressure> {
         return this._categoricalSourcePressure;
     }
+    get categoricalSourcePulse(): ObservableArray<ModelHistoryChangesPulse>{
+        return this._categoricalSourcePulse;
+    }
 
     changesWeight: ModelHistoryChangesWeight[]=[]
     changesPressure: ModelHistoryChangesPressure[]=[]
+    changesPulse: ModelHistoryChangesPulse[]=[]
+    changesPulseRaw: ModelHistoryChange[]=[]
     changesWeightRaw: ModelHistoryChange[]=[]
     changesPressureRaw: ModelHistoryChange[]=[]
+
+    minWeight: number=10;
+    maxWeight: number=200;
+    stepWeight: number=(this.maxWeight - this.minWeight)/5;
+
+    minPressure: number=10;
+    maxPressure: number=200;
+    stepPressure: number=(this.maxPressure - this.minPressure)/10;
+
+    minPulse=30;
+    maxPulse=200;
+    stepPulse=(this.maxPulse-this.minPulse)/4
 
     private id:number = -1;
     isShowAllDiagnosis=false;
@@ -58,20 +76,31 @@ export class ProfileUserFull implements OnInit{
 
         this.page.actionBarHidden = true;
         this.profileService.getInfoHealthTop(this.id).subscribe((x)=>{
-            console.log(x['content'])
+            //console.log(x['content'])
             this.changesWeightRaw = <ModelHistoryChange[]>x['content'];
             this.changesPressureRaw = <ModelHistoryChange[]>x['content'];
+            this.changesPulseRaw = <ModelHistoryChange[]>x['content'];
+            //console.log(this.changesPulseRaw.length)
             this.changesWeightRaw = this.changesWeightRaw.filter(x=>{ if(x.typeChange.id == 11) return true;})
             this.changesPressureRaw = this.changesPressureRaw.filter(x=>{ if(x.typeChange.id == 12) return true;})
-
+            this.changesPulseRaw = this.changesPulseRaw.filter(x=>{ if(x.typeChange.id == 13) return true;})
+            for (let pulseChange of this.changesPulseRaw)
+                this.changesPulse.push(new ModelHistoryChangesPulse(this.datePipe.transform(new Date(pulseChange.dateChange), "dd/MM/yy HH:mm"), Number(pulseChange.descriptionChange),pulseChange.id))
             for(let pr of this.changesPressureRaw)
-                this.changesPressure.push(new ModelHistoryChangesPressure(this.datePipe.transform(new Date(pr.dateChange), "dd/MM/yy"), Number(pr.descriptionChange.split("/")[0]), Number(pr.descriptionChange.split("/")[1]), pr.id, "1"))
+                this.changesPressure.push(new ModelHistoryChangesPressure(this.datePipe.transform(new Date(pr.dateChange), "dd/MM/yy HH:mm"), Number(pr.descriptionChange.split("/")[0]), Number(pr.descriptionChange.split("/")[1]), pr.id, "1"))
             for(let hc of this.changesWeightRaw)
-            this.changesWeight.push(new ModelHistoryChangesWeight(this.datePipe.transform(new Date(hc.dateChange), "dd/MM/yy"), Number(hc.descriptionChange), hc.id, "1"))
+                this.changesWeight.push(new ModelHistoryChangesWeight(this.datePipe.transform(new Date(hc.dateChange), "dd/MM/yy HH:mm"), Number(hc.descriptionChange), hc.id, "1"))
+
             this.changesWeight = this.changesWeight.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
             this.changesPressure = this.changesPressure.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
+            this.changesPulse = this.changesPulse.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
             this._categoricalSource = new ObservableArray(this.changesWeight);
             this._categoricalSourcePressure = new ObservableArray<ModelHistoryChangesPressure>(this.changesPressure);
+            this._categoricalSourcePulse = new ObservableArray<ModelHistoryChangesPulse>(this.changesPulse);
+
+            this.pulse_findMinMaxAvgVal(this.changesPulse);
+            this.weight_findMinMaxAvgVal(this.changesWeight);
+            this.pressure_findMinMaxAvgVal(this.changesPressure);
         }, error => {
             console.log(error)
         })
@@ -101,8 +130,56 @@ export class ProfileUserFull implements OnInit{
             }})
     }
 
-    changeDiagnosis($event){
+    changeDiagnosis(id){
+        this.router.navigate(['diagnosis_change'], {queryParams:{
+            "idDiagnosis":id
+            }})
+    }
 
+    pulse_findMinMaxAvgVal(array: ModelHistoryChangesPulse[]){
+        let min = array[0].descriptionChangePulse;
+        let max = min;
+        let avg = 0;
+        for (let item of array) {
+            if(item.descriptionChangePulse>max) max=item.descriptionChangePulse;
+            if(item.descriptionChangePulse<min) min=item.descriptionChangePulse;
+        }
+        avg = (max-min)/4;
+
+        this.minPulse =min-10;
+        this.maxPulse= max+10;
+        this.stepPulse = avg;
+
+    }
+
+    weight_findMinMaxAvgVal(array: ModelHistoryChangesWeight[]){
+        let min = array[0].descriptionChange;
+        let max = min;
+        let avg = 0;
+        for (let item of array) {
+            if(item.descriptionChange>max) max=item.descriptionChange;
+            if(item.descriptionChange<min) min=item.descriptionChange;
+        }
+        avg = (max-min)/4;
+
+        this.minWeight =min-10;
+        this.maxWeight= max+10;
+        this.stepWeight = avg;
+    }
+
+    pressure_findMinMaxAvgVal(array: ModelHistoryChangesPressure[]){
+        let min = array[0].descriptionChangeLow;
+        let max = array[0].descriptionChangeHigh;
+        let avg = 0;
+        for (let item of array) {
+            if(item.descriptionChangeHigh>max) max=item.descriptionChangeHigh;
+            if(item.descriptionChangeLow<min) min=item.descriptionChangeLow;
+        }
+        avg = (max-min)/10;
+
+        this.minPressure =min-10;
+        this.maxPressure= max+10;
+        this.stepPressure = avg;
     }
 
     showListTreatment($event){
@@ -144,5 +221,19 @@ export class ModelHistoryChangesPressure {
     descriptionChangeLow: number;
     id: number;
     legend:string;
+}
+
+export class ModelHistoryChangesPulse {
+
+
+    constructor(dateChange: string, descriptionChangePulse: number, id: number) {
+        this.dateChange = dateChange;
+        this.descriptionChangePulse = descriptionChangePulse;
+        this.id = id;
+    }
+
+    dateChange:string;
+    descriptionChangePulse: number;
+    id: number;
 }
 

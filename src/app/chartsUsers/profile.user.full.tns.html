@@ -5,7 +5,7 @@
                 <Image src="res://leftarrow"></Image>
             </StackLayout>
         </StackLayout>
-        <Label style="text-align: left" class="labelSettings labelLightStyle" [text]="'Профиль'"></Label>
+        <Label textWrap="true" style="text-align: left" class="labelSettings labelLightStyle" [text]="'Профиль'"></Label>
         <Label [text]="'Имя: '+ usersData?.firstname" class="labelLightStyle labelAcc"></Label>
         <Label [text]="'Фамилия: ' + usersData?.lastname" class="labelLightStyle labelAcc"></Label>
         <Label [text]="'Отчество: ' + usersData?.otchestvo" class="labelLightStyle labelAcc"></Label>
@@ -16,7 +16,7 @@
             <StackLayout *ngFor="let diagnosis of usersDiagnosis">
                 <StackLayout orientation="horizontal">
                 <Label class="label-weight-user labelDarkStyle" style="vertical-align: center;" [text]="diagnosis.nameD"></Label>
-                    <Button (tap)="changeDiagnosis($event)"  style="background-color: #ff8e12; height: 130px; width: 220px;" class="buttonStyle" [text]="'Изменить'"></Button>
+                    <Button (tap)="changeDiagnosis(diagnosis.id)"  style="background-color: #ff8e12; height: 130px; width: 220px;" class="buttonStyle" [text]="'Изменить'"></Button>
                 </StackLayout>
                 <Label class="delimeter labelDarkStyle"></Label>
             </StackLayout>
@@ -49,7 +49,7 @@
                                        verticalStrokeWidth="1">
                 </RadCartesianChartGrid>
             <CategoricalAxis majorTickInterval ="1" labelSize="5" labelFitMode="Rotate" tkCartesianHorizontalAxis></CategoricalAxis>
-            <LinearAxis  majorStep="5" tkCartesianVerticalAxis></LinearAxis>
+            <LinearAxis  [minimum]="minWeight" [majorStep]="stepWeight" [maximum]="maxPulse" tkCartesianVerticalAxis></LinearAxis>
             <LineSeries  seriesName="weightArea" tkCartesianSeries [items]="categoricalSource" categoryProperty="dateChange" valueProperty="descriptionChange">
             </LineSeries>
         </RadCartesianChart>
@@ -66,9 +66,25 @@
                                        verticalStrokeWidth="1">
                 </RadCartesianChartGrid>
                 <CategoricalAxis labelTextColor="#cb4b16" textSize="10" labelFitMode="Rotate"  lineThickness="3"tkCartesianHorizontalAxis></CategoricalAxis>
-                <LinearAxis minimum="50" lineHidden="false" lineThickness="3" majorStep="5" tkCartesianVerticalAxis></LinearAxis>
+                <LinearAxis [minimum]="minPressure" [majorStep]="stepPressure" [maximum]="maxPressure" lineHidden="false" lineThickness="3" majorStep="5" tkCartesianVerticalAxis></LinearAxis>
                 <LineSeries legendTitle="High" seriesName="weightArea" tkCartesianSeries [items]="categoricalSourcePressure" categoryProperty="dateChange" valueProperty="descriptionChangeHigh"></LineSeries>
                 <LineSeries legendTitle="Low" seriesName="weightArea" tkCartesianSeries [items]="categoricalSourcePressure" categoryProperty="dateChange" valueProperty="descriptionChangeLow"></LineSeries>
+            </RadCartesianChart>
+        </StackLayout>
+        <StackLayout class="stackInfoUser backgroundStyleLight" style="height: 1000px;">
+            <Label class="label-weight-user labelDarkStyle" [text]="'Изменение пульса (уд/мин)'"></Label>
+            <RadCartesianChart>
+                <RadCartesianChartGrid tkCartesianGrid
+                                       horizontalLinesVisible="true"
+                                       verticalLinesVisible="false"
+
+                                       horizontalStrokeWidth="1"
+                                       verticalStrokeWidth="1">
+                </RadCartesianChartGrid>
+                <CategoricalAxis majorTickInterval ="1" labelSize="5" labelFitMode="Rotate" tkCartesianHorizontalAxis></CategoricalAxis>
+                <LinearAxis [minimum]="minPulse" [majorStep]="stepPulse" [maximum]="maxPulse" tkCartesianVerticalAxis></LinearAxis>
+                <LineSeries  seriesName="weightArea" tkCartesianSeries [items]="categoricalSourcePulse" categoryProperty="dateChange" valueProperty="descriptionChangePulse">
+                </LineSeries>
             </RadCartesianChart>
         </StackLayout>
     </StackLayout>

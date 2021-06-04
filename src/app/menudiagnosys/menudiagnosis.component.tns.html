@@ -5,7 +5,7 @@
                 <Image src="res://leftarrow"></Image>
             </StackLayout>
         </StackLayout>
-        <Label class="labelLightStyle labelHeaderMenu"
+        <Label textWrap="true" class="labelLightStyle labelHeaderMenu"
                [text]="typeAccess=='PATIENT'?'Выберите диагноз':'Выберите пациента'"></Label>
 
         <AbsoluteLayout *ngIf="diagnosis.length!=counterUsers&&typeAccess=='DOCTOR'||typeAccess=='PATIENT'&&!isLoadedPage" class="cv-wrapper">

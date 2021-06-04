@@ -5,7 +5,7 @@
                 <Image src="res://leftarrow"></Image>
             </StackLayout>
         </StackLayout>
-        <TextView  style="text-align: left; width: 100%;" editable="false" class="labelSettings labelLightStyle" [text]="'Поиск пациентов'"></TextView>
+        <Label textWrap="true" style="text-align: left; width: 100%;" class="labelSettings labelLightStyle" [text]="'Поиск пациентов'"></Label>
         <StackLayout class="formPatient" *ngFor="let users of allUsersList">
             <Label class="label-fio labelDarkStyle" [text]="users.usersData.firstname+' '+users.usersData.lastname+' '+users.usersData.otchestvo"></Label>
             <Label class="label-fio labelDarkStyle" [text]="'Дата рождения: '+users.usersData.datebirth"></Label>

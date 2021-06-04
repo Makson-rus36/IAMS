@@ -19,6 +19,7 @@ import {ProfileUserComponent} from '@src/app/profile/profile.component';
 import {DiagnosisAddComponent} from '@src/app/diagnosis/diagnosis.add.component';
 import {MenudiagnosisComponent} from '@src/app/menudiagnosys/menudiagnosis.component';
 import {ProfileUserFull} from '@src/app/chartsUsers/profile.user.full';
+import {DiagnosisChangeComponent} from '@src/app/changeDiagnosis/diagnosis.change.component';
 
 export const routes: Routes = [
   {
@@ -87,5 +88,8 @@ export const routes: Routes = [
     },
     {
         path:'diagnosis_select', component: MenudiagnosisComponent
+    },
+    {
+        path:'diagnosis_change', component: DiagnosisChangeComponent
     }
 ];

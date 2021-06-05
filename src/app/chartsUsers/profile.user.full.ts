@@ -84,23 +84,40 @@ export class ProfileUserFull implements OnInit{
             this.changesWeightRaw = this.changesWeightRaw.filter(x=>{ if(x.typeChange.id == 11) return true;})
             this.changesPressureRaw = this.changesPressureRaw.filter(x=>{ if(x.typeChange.id == 12) return true;})
             this.changesPulseRaw = this.changesPulseRaw.filter(x=>{ if(x.typeChange.id == 13) return true;})
-            for (let pulseChange of this.changesPulseRaw)
+            for (let pulseChange of this.changesPulseRaw){
+                //console.log(pulseChange.descriptionChange)
                 this.changesPulse.push(new ModelHistoryChangesPulse(this.datePipe.transform(new Date(pulseChange.dateChange), "dd/MM/yy HH:mm"), Number(pulseChange.descriptionChange),pulseChange.id))
+            }
             for(let pr of this.changesPressureRaw)
                 this.changesPressure.push(new ModelHistoryChangesPressure(this.datePipe.transform(new Date(pr.dateChange), "dd/MM/yy HH:mm"), Number(pr.descriptionChange.split("/")[0]), Number(pr.descriptionChange.split("/")[1]), pr.id, "1"))
             for(let hc of this.changesWeightRaw)
                 this.changesWeight.push(new ModelHistoryChangesWeight(this.datePipe.transform(new Date(hc.dateChange), "dd/MM/yy HH:mm"), Number(hc.descriptionChange), hc.id, "1"))
 
-            this.changesWeight = this.changesWeight.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
+            this.changesPulse = this.changesPulse.sort((x,y)=>{
+                return Date.parse(x.dateChange)-Date.parse(y.dateChange);
+            })
+            this.changesPressure = this.changesPressure.sort((x,y)=>{
+                return Date.parse(x.dateChange)-Date.parse(y.dateChange);
+            })
+            this.changesWeight = this.changesWeight.sort((x,y)=>{
+                return Date.parse(x.dateChange)-Date.parse(y.dateChange);
+            })
+
+            for (let modelHistoryChangesPuls of this.changesPulse) {
+                console.log(modelHistoryChangesPuls.descriptionChangePulse)
+            }
+
+           /* this.changesWeight = this.changesWeight.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
             this.changesPressure = this.changesPressure.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
-            this.changesPulse = this.changesPulse.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
+            this.changesPulse = this.changesPulse.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)*/
             this._categoricalSource = new ObservableArray(this.changesWeight);
             this._categoricalSourcePressure = new ObservableArray<ModelHistoryChangesPressure>(this.changesPressure);
             this._categoricalSourcePulse = new ObservableArray<ModelHistoryChangesPulse>(this.changesPulse);
-
+            //console.log(this.changesPulse.length)
             this.pulse_findMinMaxAvgVal(this.changesPulse);
             this.weight_findMinMaxAvgVal(this.changesWeight);
             this.pressure_findMinMaxAvgVal(this.changesPressure);
+
         }, error => {
             console.log(error)
         })
@@ -121,7 +138,7 @@ export class ProfileUserFull implements OnInit{
         })
     }
     goToSearch($event){
-        this.router.navigate(['search']);
+        this.router.navigate(['home']);
     }
 
     addDiagnosis($event){
@@ -144,11 +161,13 @@ export class ProfileUserFull implements OnInit{
             if(item.descriptionChangePulse>max) max=item.descriptionChangePulse;
             if(item.descriptionChangePulse<min) min=item.descriptionChangePulse;
         }
-        avg = (max-min)/4;
-
         this.minPulse =min-10;
-        this.maxPulse= max+10;
+        this.maxPulse= max+20;
+        avg = (max-min)/4;
+        this.maxPulse+=avg;
         this.stepPulse = avg;
+
+        //console.log(this.maxPulse);
 
     }
 

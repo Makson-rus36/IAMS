@@ -48,6 +48,7 @@
                                        horizontalStrokeWidth="1"
                                        verticalStrokeWidth="1">
                 </RadCartesianChartGrid>
+            <Trackball tkCartesianTrackball></Trackball>
             <CategoricalAxis majorTickInterval ="1" labelSize="5" labelFitMode="Rotate" tkCartesianHorizontalAxis></CategoricalAxis>
             <LinearAxis  [minimum]="minWeight" [majorStep]="stepWeight" [maximum]="maxPulse" tkCartesianVerticalAxis></LinearAxis>
             <LineSeries  seriesName="weightArea" tkCartesianSeries [items]="categoricalSource" categoryProperty="dateChange" valueProperty="descriptionChange">
@@ -65,6 +66,7 @@
                                        horizontalStrokeWidth="1"
                                        verticalStrokeWidth="1">
                 </RadCartesianChartGrid>
+                <Trackball tkCartesianTrackball></Trackball>
                 <CategoricalAxis labelTextColor="#cb4b16" textSize="10" labelFitMode="Rotate"  lineThickness="3"tkCartesianHorizontalAxis></CategoricalAxis>
                 <LinearAxis [minimum]="minPressure" [majorStep]="stepPressure" [maximum]="maxPressure" lineHidden="false" lineThickness="3" majorStep="5" tkCartesianVerticalAxis></LinearAxis>
                 <LineSeries legendTitle="High" seriesName="weightArea" tkCartesianSeries [items]="categoricalSourcePressure" categoryProperty="dateChange" valueProperty="descriptionChangeHigh"></LineSeries>
@@ -73,7 +75,7 @@
         </StackLayout>
         <StackLayout class="stackInfoUser backgroundStyleLight" style="height: 1000px;">
             <Label class="label-weight-user labelDarkStyle" [text]="'Изменение пульса (уд/мин)'"></Label>
-            <RadCartesianChart>
+            <RadCartesianChart >
                 <RadCartesianChartGrid tkCartesianGrid
                                        horizontalLinesVisible="true"
                                        verticalLinesVisible="false"
@@ -81,7 +83,8 @@
                                        horizontalStrokeWidth="1"
                                        verticalStrokeWidth="1">
                 </RadCartesianChartGrid>
-                <CategoricalAxis majorTickInterval ="1" labelSize="5" labelFitMode="Rotate" tkCartesianHorizontalAxis></CategoricalAxis>
+                <Trackball tkCartesianTrackball></Trackball>
+                <CategoricalAxis  allowPan="true" allowZoom="true" majorTickInterval ="1" labelSize="5" labelFitMode="Rotate" tkCartesianHorizontalAxis></CategoricalAxis>
                 <LinearAxis [minimum]="minPulse" [majorStep]="stepPulse" [maximum]="maxPulse" tkCartesianVerticalAxis></LinearAxis>
                 <LineSeries  seriesName="weightArea" tkCartesianSeries [items]="categoricalSourcePulse" categoryProperty="dateChange" valueProperty="descriptionChangePulse">
                 </LineSeries>

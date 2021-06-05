@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, Page} from '@nativescript/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DiagnosService} from '@src/app/services/diagnos.service';
 import {Subscription} from 'rxjs';
 import {DiagnosisModel} from '@src/app/models/diagnosis.model';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     selector: 'app-recommendation',
@@ -24,6 +25,14 @@ export class RecomendationComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/recommendation", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/home'])
+                }
+            });
+        }
         this.page.actionBarHidden = true;
         this.diagnosService.getDiagnosWithId(this.idD).subscribe((x:DiagnosisModel)=>{
             this.info = x.descriptionD;

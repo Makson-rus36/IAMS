@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ModelUser} from '@src/app/models/modelUser';
 import {DiagnosisModel} from '@src/app/models/diagnosis.model';
 import {Subscription} from 'rxjs';
-import {ObservableArray, Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, ObservableArray, Page} from '@nativescript/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from '@src/app/services/profile.service';
 import {DiagnosService} from '@src/app/services/diagnos.service';
@@ -10,6 +10,7 @@ import {ErrorModel} from '@src/app/models/error.model';
 import {Country, DataService} from '@src/app/models/test_DataService';
 import {ModelHistoryChange} from '@src/app/models/modelHistoryChange';
 import {DatePipe} from '@angular/common';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     moduleId: module.id,
@@ -73,7 +74,14 @@ export class ProfileUserFull implements OnInit{
     ngOnInit() {
 
         const appSettings = require("tns-core-modules/application-settings");
-
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/profile_user_full", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/home'])
+                }
+            });
+        }
         this.page.actionBarHidden = true;
         this.profileService.getInfoHealthTop(this.id).subscribe((x)=>{
             //console.log(x['content'])
@@ -103,13 +111,6 @@ export class ProfileUserFull implements OnInit{
                 return Date.parse(x.dateChange)-Date.parse(y.dateChange);
             })
 
-            for (let modelHistoryChangesPuls of this.changesPulse) {
-                console.log(modelHistoryChangesPuls.descriptionChangePulse)
-            }
-
-           /* this.changesWeight = this.changesWeight.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
-            this.changesPressure = this.changesPressure.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)
-            this.changesPulse = this.changesPulse.filter((v,i,a)=>a.findIndex(t=>(t.dateChange === v.dateChange))===i)*/
             this._categoricalSource = new ObservableArray(this.changesWeight);
             this._categoricalSourcePressure = new ObservableArray<ModelHistoryChangesPressure>(this.changesPressure);
             this._categoricalSourcePulse = new ObservableArray<ModelHistoryChangesPulse>(this.changesPulse);

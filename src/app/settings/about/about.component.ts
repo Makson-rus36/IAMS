@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, Page} from '@nativescript/core';
 import {Router} from '@angular/router';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     selector: 'app-about',
@@ -13,6 +14,14 @@ export class AboutComponent implements OnInit{
     }
 
     ngOnInit() {
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/about", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/home'])
+                }
+            });
+        }
         this.page.actionBarHidden = true;
     }
 }

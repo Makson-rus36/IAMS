@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, Page} from '@nativescript/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PillsModel} from '@src/app/models/pillsModel';
 import {TreatmentCourseModel} from '@src/app/models/treatment.course.model';
 import {DiagnosService} from '@src/app/services/diagnos.service';
 import {Subscription} from 'rxjs';
 import {SheduleService} from '@src/app/services/shedule.service';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     selector:'app-schedule',
@@ -15,6 +16,8 @@ import {SheduleService} from '@src/app/services/shedule.service';
 
 export class ScheduleComponent implements OnInit{
     pills:TreatmentCourseModel[] = [];
+    showInfo=false;
+    pillInfo:PillsModel;
     private scheduleSub: Subscription;
     private idD: number=-1;
 
@@ -28,6 +31,14 @@ export class ScheduleComponent implements OnInit{
     }
 
     ngOnInit() {
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/schedule", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/home'])
+                }
+            });
+        }
         this.page.actionBarHidden=true;
         this.scheduleService.getTreatmentCourses(this.idD).subscribe(x=>{
             this.pills = <TreatmentCourseModel[]>x['content'];
@@ -43,11 +54,16 @@ export class ScheduleComponent implements OnInit{
         })
     }
 
-    goToInfoPill(id:number){
-        this.router.navigate(['info', id]);
+    goToInfoPill(pill:PillsModel){
+        this.showInfo=true;
+        this.pillInfo=pill;
     }
 
     goToHome($event){
-        this.router.navigate(['home']);
+        this.router.navigate(['/home']);
+    }
+
+    goToBack($event){
+        this.showInfo=false;
     }
 }

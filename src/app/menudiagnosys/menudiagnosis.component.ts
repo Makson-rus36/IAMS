@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, Page} from '@nativescript/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {DiagnosService} from '@src/app/services/diagnos.service';
@@ -8,6 +8,7 @@ import {DiagnosisModel} from '@src/app/models/diagnosis.model';
 import {ModelUser} from '@src/app/models/modelUser';
 import {ProfileService} from '@src/app/services/profile.service';
 import {ModelSearchWithPatient} from '@src/app/models/ModelSearchWithPatient';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     selector: 'app-menu',
@@ -36,6 +37,14 @@ export class MenudiagnosisComponent implements OnInit{
 
     ngOnInit() {
         this.page.actionBarHidden=true;
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/diagnosis_select", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/home'])
+                }
+            });
+        }
         const appSettings = require("tns-core-modules/application-settings");
         this.typeAccess = appSettings.getString("acc_access");
         if(this.typeAccess=='DOCTOR'){

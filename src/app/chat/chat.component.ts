@@ -79,8 +79,7 @@ export class ChatComponent implements OnInit{
             application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
                 if (this.router.isActive("/chat", false)) {
                     data.cancel = true;
-                    // @ts-ignore
-                            this.goToHome();
+                    this.router.navigate(['/home'])
                 }
             });
         }

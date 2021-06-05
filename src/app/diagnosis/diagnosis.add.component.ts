@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {EventData, Page, TextField} from '@nativescript/core';
+import {
+    AndroidActivityBackPressedEventData,
+    AndroidApplication,
+    EventData,
+    ItemEventData,
+    Page,
+    TextField,
+    TextView
+} from '@nativescript/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DiagnosService} from '@src/app/services/diagnos.service';
 import {Subscription} from 'rxjs';
@@ -11,6 +19,7 @@ import {TreatmentCourseModel} from '@src/app/models/treatment.course.model';
 import {PillsModel} from '@src/app/models/pillsModel';
 import {DatePickerField} from '@nativescript/datetimepicker/ui/date-picker-field.android';
 import {DatePipe} from '@angular/common';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     selector: 'app-diagn',
@@ -35,6 +44,8 @@ export class DiagnosisAddComponent implements OnInit{
     newCourse:TreatmentCourseModel;
     editCourse:TreatmentCourseModel;
     private querySubscription: Subscription;
+    isCreatePill =false;
+    newPillItem: PillsModel;
     constructor(private page:Page, private router:Router, private diagnosService: DiagnosService, private activateRoute: ActivatedRoute,
                 private profileService: ProfileService, private datePipe: DatePipe) {
         this.querySubscription = activateRoute.queryParams.subscribe(
@@ -45,6 +56,14 @@ export class DiagnosisAddComponent implements OnInit{
     }
 
     ngOnInit() {
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/diagnosis_add", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/home'])
+                }
+            });
+        }
         this.page.actionBarHidden = true;
         this.minDate2 = new Date(this.minDate1.getFullYear(), this.minDate1.getMonth(), this.minDate1.getDate()+1)
         const appSettings = require("tns-core-modules/application-settings");
@@ -84,7 +103,7 @@ export class DiagnosisAddComponent implements OnInit{
     }
 
     cancel($event){
-
+        this.router.navigate(['profile_user/'+this.idUser])
     }
 
     editNameDiagnosis(args: EventData){
@@ -126,8 +145,14 @@ export class DiagnosisAddComponent implements OnInit{
         this.isShowListPills = false;
     }
 
-    selectPill(pill){
-        this.newCourse.medicaments = pill;
+    selectPill(args: ItemEventData){
+        if(this.isAddTreatment){
+            this.newCourse.medicaments = this.pills[args.index];
+            this.newCourse.medicamentsId = this.pills[args.index].id;
+        }
+        if(this.isEditTreatment){
+            this.editCourse.medicaments=this.pills[args.index];
+        }
         this.isShowListPills = false;
     }
 
@@ -190,8 +215,9 @@ export class DiagnosisAddComponent implements OnInit{
         this.isShowEditListPills = false;
     }
 
-    updatePill(pill){
-        this.editCourse.medicaments = pill;
+    updatePill(item:ItemEventData){
+        this.editCourse.medicaments = this.pills[item.index];
+        this.editCourse.medicamentsId = this.pills[item.index].id;
     }
 
     getObjDate(dateString:string){
@@ -208,6 +234,32 @@ export class DiagnosisAddComponent implements OnInit{
     }
     onEditDateEndChange(args:EventData){
         this.editCourse.timeCourseEnd = (<DatePickerField>args.object).date.toISOString();
+    }
+
+    createPill($event){
+        this.diagnosService.addPill(this.newPillItem).subscribe((x:PillsModel)=>{
+            this.pills.push(x)
+            this.isCreatePill=false;
+            this.isShowListPills = false;
+            this.isShowListPills = true;
+        }, error => {
+            console.log(error)
+            this.isCreatePill=false;
+            this.isShowListPills = false;
+            this.isShowListPills = true;
+        })
+    }
+    changeNamePill(args:EventData){
+        this.newPillItem.nameM=(<TextField>args.object).text;
+    }
+    changeDecrpPill(args:EventData){
+        this.newPillItem.descriptionM=(<TextView>args.object).text;
+    }
+    newPill($event){
+        this.newPillItem= new PillsModel();
+        this.newPillItem.nameM ='';
+        this.newPillItem.descriptionM ='';
+        this.isCreatePill=true;
     }
 
 }

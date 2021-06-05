@@ -1,5 +1,20 @@
-<ScrollView class="backgroundStyle">
-    <StackLayout style="width: 100%">
+<ScrollView *ngIf="showInfo" class="backgroundStyle">
+    <StackLayout style="width: 100%; padding: 20px;">
+    <StackLayout  orientation="horizontal">
+        <StackLayout (tap)="goToBack($event)" orientation="horizontal">
+            <StackLayout class="buttonStackBack" orientation="horizontal">
+                <Image src="res://leftarrow"></Image>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+    <Label textWrap="true" class="labelSchedule labelLightStyle" [text]="'Информация о препарате'" ></Label>
+    <Label [text]="pillInfo.nameM" class="labelLightStyle" style="font-size: 28px" textWrap="true"></Label>
+    <Label [text]="pillInfo.descriptionM" class="labelLightStyle" style="font-size: 18px" textWrap="true"></Label>
+    </StackLayout>
+</ScrollView>
+
+<ScrollView *ngIf="!showInfo" class="backgroundStyle">
+    <StackLayout style="width: 100%; padding: 20px;">
     <StackLayout  orientation="horizontal">
         <StackLayout (tap)="goToHome($event)" orientation="horizontal">
             <StackLayout class="buttonStackBack" orientation="horizontal">
@@ -7,13 +22,13 @@
             </StackLayout>
         </StackLayout>
     </StackLayout><Label textWrap="true" class="labelSchedule labelLightStyle" [text]="'Расписание'" ></Label>
-
+        <Label textWrap="true" style="text-align: center; font-size: 16px;" class="labelLightStyle" *ngIf="pills.length==0" [text]="'Ваш лечащий врач пока не назначил курс лечения'"></Label>
     <FlexboxLayout class="backgroundStyleLight blockBackgroundPill" *ngFor="let pill of pills">
         <StackLayout class="blockPill">
-            <Label [text]="pill.medicaments?.nameM"></Label>
-            <Label [text]="pill.medicationSchedule"></Label>
-            <Label [text]="pill.supplementationMedicament"></Label>
-            <Button style="background-color: #ff8e12" class="buttonStyle" [text]="'Информация'" (tap)="goToInfoPill(pill.medicaments.id)"></Button>
+            <Label textWrap="true" [text]="pill.medicaments?.nameM"></Label>
+            <Label textWrap="true" [text]="pill.medicationSchedule"></Label>
+            <Label textWrap="true" [text]="pill.supplementationMedicament"></Label>
+            <Button style="background-color: #ff8e12" class="buttonStyle" [text]="'Информация'" (tap)="goToInfoPill(pill.medicaments)"></Button>
         </StackLayout>
     </FlexboxLayout>
     </StackLayout>

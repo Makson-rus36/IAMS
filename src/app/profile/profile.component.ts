@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '@nativescript/core';
+import {AndroidActivityBackPressedEventData, AndroidApplication, Page} from '@nativescript/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from '@src/app/services/profile.service';
 import {ModelUser} from '@src/app/models/modelUser';
@@ -7,6 +7,7 @@ import {ErrorModel} from '@src/app/models/error.model';
 import {Subscription} from 'rxjs';
 import {DiagnosisModel} from '@src/app/models/diagnosis.model';
 import {DiagnosService} from '@src/app/services/diagnos.service';
+import * as application from 'tns-core-modules/application';
 
 @Component({
     selector: 'app-profile',
@@ -24,6 +25,14 @@ export class ProfileUserComponent implements OnInit{
     }
 
     ngOnInit() {
+        if (application.android) {
+            application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+                if (this.router.isActive("/profile", false)) {
+                    data.cancel = true;
+                    this.router.navigate(['/settings'])
+                }
+            });
+        }
         this.page.actionBarHidden = true;
         this.profileService.getUsersDataWithId(this.id).subscribe((x:ModelUser)=>{
             this.usersData = x;
